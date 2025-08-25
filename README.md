@@ -5,9 +5,9 @@
 This project is built to simulate the day-to-day workflows of a real-world Security Operations Center (SOC).  
 From log collection and threat detection to alert creation and response testing, the lab provides a safe and flexible space to build SOC-style skills using both local and cloud-based systems.
 
-The setup evolves over time and includes virtual machines, Docker containers, custom scripts, and eventually cloud-connected agents and honeypots — all with the goal of developing a deep, practical understanding of how modern environments are monitored and secured.
+The setup evolves over time and will include physical and virtual machines, Docker containers, custom scripts, and eventually cloud-connected agents and honeypots — all with the goal of developing a deep, practical understanding of how modern environments are monitored and secured.
 
-Everything in this lab is designed to be reproducible, self-managed, and fully documented — whether it's running on physical machines, virtual machines, or cloud instances.
+Everything in this lab is designed to be reproducible, self-managed, and fully documented.
 
 ---
 
@@ -20,7 +20,7 @@ Everything in this lab is designed to be reproducible, self-managed, and fully d
 
 ---
 
-## 🎯 Purpose
+## Purpose
 
 Cyberlab is a hands-on learning environment designed to:
 
@@ -33,7 +33,7 @@ Cyberlab is a hands-on learning environment designed to:
 
 ---
 
-## 🖥️ Current Setup
+## Current Setup
 
 ### Hardware
 
@@ -63,7 +63,7 @@ Cyberlab is a hands-on learning environment designed to:
 
 ---
 
-## 🗺️ Roadmap
+## Roadmap
 
 **Now (core LAN build)**
 - DHCP reservations for core nodes  
@@ -87,7 +87,7 @@ Cyberlab is a hands-on learning environment designed to:
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 - `assets/` — banners, screenshots
 - `diagrams/` — network/topology diagrams
