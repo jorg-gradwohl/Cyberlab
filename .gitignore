@@ -1,0 +1,6 @@
+# secrets
+.env
+
+# pyhton cruft
+__pycache__/
+*.pyc

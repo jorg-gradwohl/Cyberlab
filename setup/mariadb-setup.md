@@ -1,7 +1,7 @@
 # MariaDB Setup — Docker (Cyberlab)
 
-Host: **Desktop PC (simulated branch office)**  
-OS: **Ubuntu 24.04 LTS**  
+Host: **Desktop PC (simulated branch office)**
+OS: **Ubuntu 24.04 LTS**
 Container Engine: **Docker** (from Ubuntu repo)
 
 ---

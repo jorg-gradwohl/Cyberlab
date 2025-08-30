@@ -1,6 +1,6 @@
 # Docker Setup — Ubuntu
 
-Host: **Desktop PC (simulated branch office)**   
+Host: **Desktop PC (simulated branch office)**
 OS: **Ubuntu 24.04 LTS**
 
 ---
