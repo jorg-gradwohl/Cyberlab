@@ -59,7 +59,7 @@ Cyberlab is a hands-on learning environment designed to:
 - **IoT devices** are isolated on a dedicated SSID (segmented from user devices)  
 - Static IPs / DHCP reservations assigned to core lab devices for consistency  
 
-![Network Topology](cyberlab-network_2025-09-04)
+![Network Topology](diagrams/cyberlab-network_2025-09-04.png)
 
 ---
 
