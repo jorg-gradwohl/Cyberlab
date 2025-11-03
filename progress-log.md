@@ -4,6 +4,12 @@ This file tracks the evolution of the Cyberlab project over time.
 Entries are added as new components are installed, tested, or refined.  
 
 ---
+## 2025-11-03 (cleanup)
+- Archived `db_connection_test.py` and associated `.env.sample` into `archive_scripts/db_connection_test/`.
+- Committed and pushed the archive changes to GitHub.
+- Rationale: preserve learning artifacts while keeping the public repo focused on active Cyber Security projects.
+
+
 ## 2025-09-04
 - Deployed a new container running a full Bitcoin node to validate the blockchain.
 - Deployed an additional container with **SatoshiTop**, a dashboard similar to htop but for Bitcoin node monitoring.
@@ -11,7 +17,7 @@ Entries are added as new components are installed, tested, or refined.
 - Not directly cybersecurity related so won't go into too much detail here. Just something I'm personally interested in.
 
 
-## 2025-08-30
+## 2025-08-30 (archived / legacy)
 
 - **Goal:**  
   Python script runs in the background, scans all devices for open ports, and updates the SQL database accordingly.
