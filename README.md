@@ -59,31 +59,29 @@ Cyberlab is a hands-on learning environment designed to:
 - **IoT devices** are isolated on a dedicated SSID (segmented from user devices)  
 - Static IPs / DHCP reservations assigned to core lab devices for consistency  
 
-![Network Topology](diagrams/cyberlab-network_2025-09-04.png)
+![Network Topology](diagrams/cyberlab-network_2025-11-03.png)
 
 ---
 
 ## Roadmap
 
-**Now (core LAN build)**
-- DHCP reservations for core nodes  
-- MariaDB container baseline  
-- Baseline network scans (e.g., `nmap -sV 192.168.2.0/24`) → results ingested into Splunk  
-- Simple change-alerts (e.g., notify when a new port/service is detected)  
+**Current Focus**
+- Build out a small home-SOC using Splunk (and possibly Wazuh) 
+- Set up log forwarders on all lab machines for basic visibility  
+- Simulate a few security events to test detections and alerts
 
-**Branch-office simulation (LAN only)**
-- Create a small “branch office” VM/network on the Desktop PC (e.g., SMB share + simple web app)  
-- Install agents/log forwarders and send telemetry into Splunk  
-- Validate end-to-end visibility from SOC workstation  
+**Next Steps**
+- Create a lightweight “branch office” VM for extra network realism    
+- Add DNS and web traffic visibility with Pi-hole or AdGuard 
+- Keep refining dashboards and alerts once data is flowing  
 
-**Polish**
+**Later / Future Ideas**
 - Add screenshots, diagrams, and tidy documentation  
 - Write useful SPL searches and dashboards (e.g., failed logins, DNS queries, port changes)  
 
 **Future Ideas**
-- Pi-hole/AdGuard + Unbound for DNS visibility  
-- Subnetting via a virtual router / VLANs for segmentation  
-- Cloud honeypot with strict egress controls  
+- Add a simple honeypot or cloud log source for external monitoring 
+- Experiment with light automation or scripting for analysis   
 
 ---
 
