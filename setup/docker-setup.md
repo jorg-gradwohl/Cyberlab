@@ -71,5 +71,3 @@ docker compose ps            # list running services defined by compose
 docker compose down          # stop and remove services/containers from compose.yaml
 ```
 ---
-✅ Docker is now installed and verified on the Desktop PC.  
-Next: deploy containers (e.g., MariaDB) as part of the Cyberlab branch-office simulation.

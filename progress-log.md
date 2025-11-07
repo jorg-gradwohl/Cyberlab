@@ -4,20 +4,28 @@ This file tracks the evolution of the Cyberlab project over time.
 Entries are added as new components are installed, tested, or refined.  
 
 ---
-## 2025-11-03 (cleanup)
+## 07-11-2025
+- Installed **Splunk Enterprise (Indexer + Search Head)** on the **Desktop PC** and enabled local log monitoring.
+- Installed and configured **Splunk Universal Forwarder** on all endpoints: the **Lenovo ThinkPad** (Ubuntu + Windows 10 Pro) and the **MacBook Pro** (latest macOS).
+- Verified forwarding from all machines to the Desktop PC.
+- All logs unified under the `endpoints` index and visible in Splunk Web.
+- Updated the network diagram.
+
+
+## 03-11-2025 (cleanup)
 - Archived `db_connection_test.py` and associated `.env.sample` into `archive_scripts/db_connection_test/`.
 - Committed and pushed the archive changes to GitHub.
 - Rationale: preserve learning artifacts while keeping the public repo focused on active Cyber Security projects.
 
 
-## 2025-09-04
+## 04-09-2025
 - Deployed a new container running a full Bitcoin node to validate the blockchain.
 - Deployed an additional container with **SatoshiTop**, a dashboard similar to htop but for Bitcoin node monitoring.
 - Updated the network diagram accordingly.
 - Not directly cybersecurity related so won't go into too much detail here. Just something I'm personally interested in.
 
 
-## 2025-08-30 (archived / legacy)
+## 30-08-2025 (archived / legacy)
 
 - **Goal:**  
   Python script runs in the background, scans all devices for open ports, and updates the SQL database accordingly.
@@ -32,15 +40,15 @@ Entries are added as new components are installed, tested, or refined.
   - This script is only a first test to prove database connectivity before moving on to the real port-scanning and updating database.  
 
 
-## 2025-08-25
+## 25-08-2025
 - Created initial **Cyberlab network diagram** and added to `diagrams/`.  
 - Segmented IoT devices to their own SSID outside Cyberlab scope.  
 
-## 2025-08-22
+## 22-08-2025
 - Installed Ubuntu and **Docker** on Desktop PC (simulated branch office).  
 - Deployed **MariaDB 10.11 container** to store small home inventory dataset.
 
-## 2025-07-25
+## 25-07-2025
 - Completed setup of **Lenovo ThinkPad T480** with Ubuntu, Windows 10 Pro, and Kali in VirtualBox.  
 - Configured Virgin Hub in **modem-only mode**.  
 - Deployed TP-Link Deco mesh as main router/AP. 
