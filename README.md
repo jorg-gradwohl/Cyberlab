@@ -24,7 +24,7 @@ Everything in this lab is designed to be reproducible, self-managed, and fully d
 
 Cyberlab is a hands-on learning environment designed to:
 
-- Simulate a realistic SOC at home — including log collection, correlation, and alerting using Splunk and Wazuh
+- Simulate a realistic SOC at home — including log collection, correlation, and alerting using Splunk (with Microsoft Sentinel planned for cloud-based expansion) 
 - Explore cybersecurity concepts from both red team and blue team perspectives
 - Deploy and experiment with tools like IDS/IPS, DNS sinkholes, and honeypots
 - Build automation with Python, Docker, SQL, and Linux shell scripting
@@ -37,20 +37,28 @@ Cyberlab is a hands-on learning environment designed to:
 
 ### Hardware
 
-- **Lenovo ThinkPad T480 (primary SOC workstation)**
-  - Dual-boot: Ubuntu + Windows 10 Pro
-  - Kali Linux (VirtualBox on Ubuntu) for controlled attack generation and penetration testing (e.g., Nmap, Metasploit)
+- **Desktop PC - Primary SOC Server**
+  - Ubuntu 24.04 LTS
+  - Runs:
+    - **Splunk Enterprise Indexer** (active, receiving on TCP 9997)
+    - Docker Engine
+    - Bitcoin Full Node (conatainer, fully synced)
+    - MariaDB container
+  - Purpose:
+    - Acts as the central SOC server
+    - Receives telemetry from all other lab endpoints
 
-- **Desktop PC (simulated branch office)**
-  - Ubuntu host with Docker
-  - Currently running a **MariaDB 10.11** container storing a small home inventory dataset
-  - Purpose: **acts as a remote/branch site** in a multi-site lab  
-    - Will host lightweight branch services (e.g., SMB share with weak creds, simple web app like DVWA)  
-    - Will run log forwarders / agents and feed telemetry back to the SOC (Splunk/Wazuh)
+- **Lenovo TinkPad T480 - Multi-OS Lab Workstation**
+  - Dual-boot System:
+    - Ubuntu 24.04 LTS
+    - Windows 10 Pro
+  - Kali Linux installed Ubuntu (VirtualBox)
+  - Splunk Universal Forwarder installed on Ubuntu and Windows Pro 10
 
-- **MacBook Pro (personal endpoint)**  
-  - Planned to run a **Splunk Universal Forwarder** for endpoint log generation  
-  - Provides real-world workstation telemetry for SOC analysis
+- **MacBook Pro - SOC Analyst Console**  
+  - Main analyst workstation for Splunk Web interface
+  - Runs a Splunk Universal Forwarder
+  - Used to manage the Cyberlab environment via SSH into Desktop PC and ThinkPad
 
 ### Network
 
@@ -66,22 +74,23 @@ Cyberlab is a hands-on learning environment designed to:
 ## Roadmap
 
 **Current Focus**
-- Build out a small home-SOC using Splunk (and possibly Wazuh) 
-- Set up log forwarders on all lab machines for basic visibility  
+- Get reliable logs into Splunk from all my main devices
+- Build basic visibility and simple dashboards
 - Simulate a few security events to test detections and alerts
 
-**Next Steps**
-- Create a lightweight “branch office” VM for extra network realism    
-- Add DNS and web traffic visibility with Pi-hole or AdGuard 
-- Keep refining dashboards and alerts once data is flowing  
+**Near-Term Goals**
+- Add a few small services on a spare machine to generate more interesting logs   
+- Add some basic network visibility so I can see more than just endpoint logs
+- Introduce a separate device for DNS logging to widen the data sources
 
-**Later / Future Ideas**
-- Add screenshots, diagrams, and tidy documentation  
-- Write useful SPL searches and dashboards (e.g., failed logins, DNS queries, port changes)  
+**Medium-Term Goals**
+- Set up a small cloud-based component to bring in external traffic for analysis 
+- Begin experimenting with simple detections and basic security scenarios 
 
-**Future Ideas**
-- Add a simple honeypot or cloud log source for external monitoring 
-- Experiment with light automation or scripting for analysis   
+**Long-Term Goals**
+- Create a few realistic attack/detection examples end-to-end
+- Improve documentation, add diagrams/screenshots
+- Optionally integrate a second SIEM (like Microsoft Sentinel) later   
 
 ---
 
