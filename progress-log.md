@@ -1,4 +1,4 @@
-# 📓 Cyberlab Progress Log
+# 📓 Cyberlab Progress Log 
 
 This file tracks the evolution of the Cyberlab project over time.  
 Entries are added as new components are installed, tested, or refined.  
@@ -10,6 +10,8 @@ Entries are added as new components are installed, tested, or refined.
 - Verified forwarding from all machines to the Desktop PC.
 - All logs unified under the `endpoints` index and visible in Splunk Web.
 - Updated the network diagram.
+
+**Lessons learned:** Splunk forwarders often appear fully installed but send no data until `outputs.conf`, `inputs.conf`, the correct index and receiving port `9997` are all configured and the service is actually running. Always verify each step of the ingest chain.
 
 
 ## 03-11-2025 (cleanup)
