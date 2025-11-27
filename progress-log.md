@@ -4,6 +4,20 @@ This file tracks the evolution of the Cyberlab project over time.
 Entries are added as new components are installed, tested, or refined.  
 
 ---
+## 27-11-2025
+- Began building a device inventory inside the existing MariaDB container. Added missing schema fields (device_type, network) and updated all main Cyberlab machines (Server, ThinkPad, Deco nodes, MacBook Pro)
+- Purpose was SQL practice rather than building a full asset-management system — reinforcing Docker + MariaDB workflow, table updates, and manual row inserts. Will continue adding more devices regularly to build repetition and familiarity
+
+![SQL Table Devices](assets/sql_devices_table.png)
+
+- Inspected ARP and DNS traffic on the MacBook Pro using Wireshark.
+- Performed a full network sweep using Nmap executed from the ThinkPad to validate MAC/IP mappings for the device inventory.
+
+**Lessons Learned:**
+- ARP caching hides traffic you expect to see. Initially, the MacBook Pro did not show ARP broadcasts for the ThinkPad because the MAC address was already cached locally. Fix: clear the ARP cache before capture `sudo arp -d -a`
+- macOS blocks raw-socket ARP scans. Nmap ARP discovery (nmap -sn) fails on macOS, even with Full Disk Access and Developer Tools Access. Resolution: run Nmap on the Linux ThinkPad instead.
+
+
 ## 07-11-2025
 - Installed **Splunk Enterprise (Indexer + Search Head)** on the **Desktop PC** and enabled local log monitoring.
 - Installed and configured **Splunk Universal Forwarder** on all endpoints: the **Lenovo ThinkPad** (Ubuntu + Windows 10 Pro) and the **MacBook Pro** (latest macOS).
