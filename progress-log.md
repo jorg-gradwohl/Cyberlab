@@ -4,6 +4,13 @@ This file tracks the evolution of the Cyberlab project over time.
 Entries are added as new components are installed, tested, or refined.  
 
 ---
+## 28-11-2025
+- Completed the networking fundamentals work for the Cyberlab documentation.
+- Captured routing table behaviour on the MacBook Pro, analysed how local vs gateway traffic is decided, and added a clean explanation to the new docs/networking_fundamentals.md file.
+- Added the SSH packet → Splunk correlation test (failed SSH login attempt) with supporting screenshots from Wireshark and Splunk.
+- Updated the main network diagram to include the /22 subnet mask and ip addresses.
+
+
 ## 27-11-2025
 - Began building a device inventory inside the existing MariaDB container. Added missing schema fields (device_type, network) and updated all main Cyberlab machines (Server, ThinkPad, Deco nodes, MacBook Pro)
 - Purpose was SQL practice rather than building a full asset-management system — reinforcing Docker + MariaDB workflow, table updates, and manual row inserts. Will continue adding more devices regularly to build repetition and familiarity

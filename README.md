@@ -98,6 +98,7 @@ Cyberlab is a hands-on learning environment designed to:
 
 - `assets/` — banners, screenshots
 - `diagrams/` — network/topology diagrams
+- `docs/` — additional documentation (e.g., networking_fundamentals.md)
 - `scripts/` — automation (e.g., Nmap → SQL/Splunk)
 - `setup/` — install/config notes per component
 - [📓 Progress Log](progress-log.md) — running diary of changes and experiments
