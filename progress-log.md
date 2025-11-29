@@ -8,7 +8,6 @@ Entries are added as new components are installed, tested, or refined.
 - Turned the Lenovo ThinkPad into a small “branch office” node
 - Installed NGINX on Ubuntu and replaced the default page with a simple internal test page served on http://192.168.68.120
 - Enabled a Samba/SMB file share (/srv/samba/share)
-- Set up NGINX and SMB on ThinkPad to simulate a branch office.
 - Created cron-driven synthetic web traffic (/ and /no-such-page) and `branch_heartbeat.sh` which writes a one-line “Branch Office heartbeat OK” status every minute to `/var/log/cyberlab/branch-heartbeat.log`
 - Created new Splunk index branch_office.
 - Configured UF to forward NGINX logs + heartbeat logs.
