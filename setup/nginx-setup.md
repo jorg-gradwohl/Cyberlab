@@ -153,7 +153,7 @@ Add:
 ```text
 [monitor:///var/log/nginx/access.log]
 index = branch_office
-sourcetype = nginx_access
+sourcetype = access_combined
 disabled = false
 
 [monitor:///var/log/nginx/error.log]

@@ -4,6 +4,18 @@ This file tracks the evolution of the Cyberlab project over time.
 Entries are added as new components are installed, tested, or refined.  
 
 ---
+## 02-12-2025
+- Added three new setup guides to the Cyberlab documentation:
+  - [NGINX setup](setup/nginx-setup.md) (NGINX installation, log paths, cron-driven synthetic HTTP traffic)
+  - [SMB Samba setup](setup/smb-samba-setup.md) (SMB/Samba share configuration, cron-driven activity and logging)
+  - [Branch Heartbeat setup](setup/branch-heartbeat-setup.md) (1-minute heartbeat logging service running via cron)
+- Noticed Splunk didn't extract fields from the NGINX logs. Installed the Splunk Add-on for NGINX on the main Splunk server (free app directly from Splunk)
+- Corrected NGINX log ingestion to use the access_combined sourcetype rather than nginx_access so the Splunk Add-on field extractions work properly.
+- Updated inputs.conf on the ThinkPad UF to enforce the correct sourcetype
+- Confirmed that the add-on’s field extraction pipeline works as expected (clientip, status, method, uri_path, etc.)
+- Verified ingestion end-to-end by running new searches and ensuring fields are extracted automatically
+
+
 ## 29-11-2025
 - Turned the Lenovo ThinkPad into a small “branch office” node
 - Installed NGINX on Ubuntu and replaced the default page with a simple internal test page served on http://192.168.68.120
