@@ -137,28 +137,26 @@ To generate **regular SMB activity** for Splunk, we create a tiny script that wr
 ### Create script:
 
 ```bash
-nano ~/smb_heartbeat.sh
+nano ~/smb_activity.sh
 ```
 
 Paste:
 
 ```bash
 #!/bin/bash
-echo "SMB heartbeat from $(hostname) at $(date)" > /srv/samba/share/heartbeat_$(date +%F_%H-%M-%S).log
+echo "SMB heartbeat from $(hostname) at $(date)" > /srv/samba/share/smb_activity.log
 ```
 - #!/bin/bash — shebang; tells Linux this script must be run with the Bash shell.
-- echo "SMB heartbeat from $(hostname) at $(date)" — prints a message containing the machine name and the current timestamp.
-- > — redirects the output into a file (creates a new file each time).
-- /srv/samba/share/heartbeat_$(date +%F_%H-%M-%S).log:
-    - heartbeat_... — each file is timestamped using the format YYYY-MM-DD_HH-MM-SS, so every run creates a unique file.
-    - This file is written directly into the Samba share, meaning it immediately becomes visible to any SMB client.
+- echo "SMB heartbeat from $(hostname) at $(date)" — writes a simple timestamped message.
+- > — overwrites the same file each time (prevents thousands of files building up)
+- /srv/samba/share/smb_activity.log - the file lives directly in the Samba share, so each run is a real SMB write.
 
 Make executable:
 ```bash
-chmod +x ~/smb_heartbeat.sh
+chmod +x ~/smb_activity.sh
 ```
 
-### Create cron job (runs every 5 minutes):
+### Create cron job (runs every minute):
 
 ```bash
 crontab -e
@@ -167,12 +165,12 @@ crontab -e
 Add:
 
 ```
-*/5 * * * * /home/user/smb_heartbeat.sh
+*/1 * * * * /home/user/smb_activity.sh
 ```
-_(In a cron expression, the five * symbols represent minutes, hours, day-of-month, month, and day-of-week, and together they define when and how often the scheduled job will run. * → means “every”. */5 → means “every 5”)_
+_(In a cron expression, the five * symbols represent minutes, hours, day-of-month, month, and day-of-week, and together they define when and how often the scheduled job will run. * → means “every”. */1 → means “every minute”)_
 This results in:
-- A new timestamped log file every 5 minutes inside the SMB share  
-- Splunk can ingest these files if we monitor the directory
+- One update to `smb_activity.log` every minute inside the SMB share.
+- Continous SMB activity that can be monitored in Splunk.
 
 Verify:
 
@@ -180,9 +178,9 @@ Verify:
 ls -l /srv/samba/share
 ```
 
-## 9) Splunk Forwarding (Ingest SMB Heartbeat Logs)
+## 9) Splunk Forwarding (SMB Activity Logs)
 
-To send SMB heartbeat activity into Splunk, we add a monitor stanza to the Splunk Universal Forwarder configuration on the ThinkPad (where the SMB folder is located).
+To send SMB activity into Splunk, we add a monitor stanza for the `smb_activity.log` file on the Splunk Universal Forwarder running on the ThinkPad.
 
 Edit `inputs.conf`:
 
@@ -193,14 +191,12 @@ sudo nano /opt/splunkforwarder/etc/system/local/inputs.conf
 Add the following block:
 
 ```text
-[monitor:///srv/samba/share]
+[monitor:///srv/samba/share/smb_activity.log]
 index = branch_office
-sourcetype = smb_heartbeat
-whitelist = ^heartbeat_.*\.log$
+sourcetype = smb_activity
 disabled = false
 ```
-- monitor:///srv/samba/share — tells the UF to watch the SMB share directory.
-- whitelist = ^heartbeat_.*\.log$ — only ingest files whose names start with heartbeat_ and end in .log (the cron script output).
+- monitor:///srv/samba/share/smb_activity.log — watches the single SMB activity file.
 - sourcetype = smb_heartbeat — keeps this separate from other logs in Splunk
 
 
@@ -215,13 +211,13 @@ sudo /opt/splunkforwarder/bin/splunk restart
 In Splunk Search:
 
 ```text
-index=branch_office sourcetype=smb_heartbeat
+index=branch_office sourcetype=smb_activity
 ```
 
 You should see entries like:
 
 ```
-SMB heartbeat from thinkpad at Sat Nov 29 15:44:01 GMT 2025
+SMB activity from cyberlab at Sat Nov 29 15:44:01 GMT 2025
 ```
 
 This confirms:

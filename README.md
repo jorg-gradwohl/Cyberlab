@@ -48,12 +48,20 @@ Cyberlab is a hands-on learning environment designed to:
     - Acts as the central SOC server
     - Receives telemetry from all other lab endpoints
 
-- **Lenovo TinkPad T480 - Multi-OS Lab Workstation**
+- **Lenovo ThinkPad T480 – Multi-OS Lab Workstation (Branch Office Simulation)**
   - Dual-boot System:
     - Ubuntu 24.04 LTS
     - Windows 10 Pro
   - Kali Linux installed Ubuntu (VirtualBox)
   - Splunk Universal Forwarder installed on Ubuntu and Windows Pro 10
+  - Acts as the “Branch Office” in the Cyberlab environment:
+    - Hosts lightweight services purpose-built for log generation
+    - NGINX static webpage (for HTTP access logs)
+    - SMB network share (for simulated file operations)
+    - Cron jobs scheduled to generate synthetic activity (HTTP GET requests and write a timestamped heartbeat entry to `branch-heartbeat.log`).
+    - All relevant logs (nginx_access, nginx_error & branch_heartbeat) forwarded to Splunk (index=branch_office)
+
+  - See: [NGINX setup](setup/nginx-setup.md) and [SMB / samba setup](setup/smb-samba-setup.md)
 
 - **MacBook Pro - SOC Analyst Console**  
   - Main analyst workstation for Splunk Web interface
@@ -65,7 +73,8 @@ Cyberlab is a hands-on learning environment designed to:
 - **Virgin Media Hub** in **modem-only** mode  
 - Connected directly to a **TP-Link Deco mesh system**, which acts as the main router and access point for the Cyberlab  
 - **IoT devices** are isolated on a dedicated SSID (segmented from user devices)  
-- Static IPs / DHCP reservations assigned to core lab devices for consistency  
+- Static IPs / DHCP reservations assigned to core lab devices for consistency
+- See [Networking Fundamentals](docs/networking_fundamentals.md)
 
 ![Network Topology](diagrams/cyberlab-network-diagram.png)
 
