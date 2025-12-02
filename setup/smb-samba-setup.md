@@ -130,9 +130,9 @@ ls -l /srv/samba/share
 ```
 You should see the file with group = sambashare
 
-## 8) SMB Heartbeat Cron Job
+## 8) SMB Activity Cron Job
 
-To generate **regular SMB activity** for Splunk, we create a tiny script that writes a timestamped file into the share every 5 minutes.
+To generate **regular SMB activity** for Splunk, we create a tiny script that writes a timestamped message into a single log file in the share every minute.
 
 ### Create script:
 
@@ -144,7 +144,7 @@ Paste:
 
 ```bash
 #!/bin/bash
-echo "SMB heartbeat from $(hostname) at $(date)" > /srv/samba/share/smb_activity.log
+echo "SMB activity from $(hostname) at $(date)" > /srv/samba/share/smb_activity.log
 ```
 - #!/bin/bash — shebang; tells Linux this script must be run with the Bash shell.
 - echo "SMB heartbeat from $(hostname) at $(date)" — writes a simple timestamped message.
@@ -197,7 +197,7 @@ sourcetype = smb_activity
 disabled = false
 ```
 - monitor:///srv/samba/share/smb_activity.log — watches the single SMB activity file.
-- sourcetype = smb_heartbeat — keeps this separate from other logs in Splunk
+- sourcetype = smb_activity — keeps this separate from other logs in Splunk
 
 
 Save and restart the forwarder:
