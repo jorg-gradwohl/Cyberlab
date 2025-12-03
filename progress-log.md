@@ -4,6 +4,17 @@ This file tracks the evolution of the Cyberlab project over time.
 Entries are added as new components are installed, tested, or refined.  
 
 ---
+## 03-12-2025
+- Built the first full Splunk dashboard in Dashboard Studio to validate branch-office telemetry (heartbeat, HTTP access logs, SMB activity).
+- Created a detailed documentation file for the dashboard in `docs/splunk_dashboards/splunk_branch_office_dashboard.md`, including SPL queries and explanations of each panel. [Splunk Branch Office Dashboard](docs/splunk_dashboards/splunk_branch_office_dashboard.md)
+- Verified that all synthetic telemetry sources from the ThinkPad “branch office” are being ingested correctly into the `branch_office` index.
+- Added additional devices to the MariaDB `devices` table as part of ongoing inventory expansion.
+- Updated the main Cyberlab network diagram to include all newly added devices and reflect the current topology.
+
+![Splunk Branch Office Dashboard](assets/splunk_dashboard_branch_office.png)
+
+![Updated SQL Device Inventory](assets/sql_devices_table_02.png)
+
 ## 02-12-2025
 - Added three new setup guides to the Cyberlab documentation:
   - [NGINX setup](setup/nginx-setup.md) (NGINX installation, log paths, cron-driven synthetic HTTP traffic)
