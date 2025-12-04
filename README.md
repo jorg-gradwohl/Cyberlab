@@ -15,8 +15,9 @@ Everything in this lab is designed to be reproducible, self-managed, and fully d
 - [🎯 Purpose](#purpose)
 - [🖥️ Current Setup](#current-setup)
 - [🗺️ Roadmap](#roadmap)
-- [📁 Repository Structure](#repository-structure)
+- [📚 Documentation](#documentation)
 - [📓 Progress Log](#progress-log)
+- [📁 Repository Structure](#repository-structure)
 
 ---
 
@@ -103,6 +104,34 @@ Cyberlab is a hands-on learning environment designed to:
 
 ---
 
+## Documentation
+
+High-level docs and setup guides live under `docs/` and `setup/`
+
+- **Networking & fundamentals**
+  - [Networking fundamentals](docs/networking_fundamentals.md)
+
+- **Splunk dashboards**
+  - [Branch Office Telemetry Dashboard](docs/splunk_dashboards/splunk_branch_office_dashboard.md)
+
+- **Component setup guides**
+  - [Docker setup](setup/docker-setup.md)
+  - [MariaDB setup](setup/mariadb-setup.md)
+  - [Splunk Enterprise setup](setup/splunk-enterprise-setup.md)
+  - [Splunk Universal Forwarder setup](setup/splunk-universal-forwarder-setup.md)
+  - [NGINX setup](setup/nginx-setup.md)
+  - [SMB / Samba setup](setup/smb-samba-setup.md)
+  - [Branch heartbeat setup](setup/branch-heartbeat-setup.md)
+
+---
+
+## Progress Log
+
+For a complete history of changes, updates, and development work, see the full **Progress Log**:  
+➡️ [progress-log.md](progress-log.md)
+
+---
+
 ## Repository Structure
 
 - `assets/` — banners, screenshots
@@ -111,3 +140,7 @@ Cyberlab is a hands-on learning environment designed to:
 - `scripts/` — automation (e.g., Nmap → SQL/Splunk)
 - `setup/` — install/config notes per component
 - [📓 Progress Log](progress-log.md) — running diary of changes and experiments
+
+
+
+
