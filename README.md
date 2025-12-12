@@ -113,6 +113,7 @@ High-level docs and setup guides live under `docs/` and `setup/`
 
 - **Splunk dashboards**
   - [Branch Office Telemetry Dashboard](docs/splunk_dashboards/splunk_branch_office_dashboard.md)
+  - [Endpoint Activity dashboard](docs/splunk_dashboards/endpoint_activity_dashboard.md)
 
 - **Component setup guides**
   - [Docker setup](setup/docker-setup.md)

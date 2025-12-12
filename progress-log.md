@@ -5,6 +5,12 @@ Entries are added as new components are installed, tested, or refined.
 
 
 ---
+## 12-12-2025
+- Completed the Endpoint Activity Dashboard in Splunk, focusing on validating endpoint telemetry rather than attack detection. 
+- Finalised and uploaded full dashboard documentation, clearly documenting current limitations (macOS auth excluded for now) and establishing a clean baseline for future security-focused panels. 
+- [Splunk Endpoint Activity Dashboard](docs/splunk_dashboards/endpoint_activity_dashboard.md)
+
+
 ## 06-12-2025
 I spent the whole day focusing on macOS authentication logs from the MacBook Pro into the endpoints index in Splunk. Enabled an extra logd://auth stanza to pull com.apple.opendirectoryd “Authentication …” messages and confirmed that both successful and failed logins/unlocks were being ingested, but each real attempt generated many completely duplicate events, so the counts were unusable. After multiple attempts at fixing this with SPL (grouping, bucketing, and de-duplication), I still couldn’t get reliable “per attempt” metrics, so for now I disabled the custom logd://auth stanza again to cut noise and parked the problem for a future, more advanced solution. If anyone reads this and knows how to get this working please let me know.
 
