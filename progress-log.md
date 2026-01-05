@@ -5,6 +5,20 @@ Entries are added as new components are installed, tested, or refined.
 
 
 ---
+## 05-01-2026
+Created a dedicated Windows 10 Pro malware analysis sandbox VM using VMware on the Windows boot of the Lenovo ThinkPad.
+Installed core dynamic analysis tools inside the sandbox VM:
+- System Informer (formerly Process Hacker)
+- Process Explorer
+- Process Monitor (ProcMon)
+- Fiddler
+- Wireshark
+- Regshot
+- HashMyFiles
+Purpose of the sandbox is to support dynamic malware analysis, including observation of runtime file system activity, registry changes, process creation, privilege usage, and network behaviour, in an isolated environment separate from production endpoints.
+Updated the network diagram.
+
+
 ## 12-12-2025
 - Completed the Endpoint Activity Dashboard in Splunk, focusing on validating endpoint telemetry rather than attack detection. 
 - Finalised and uploaded full dashboard documentation, clearly documenting current limitations (macOS auth excluded for now) and establishing a clean baseline for future security-focused panels. 
