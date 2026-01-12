@@ -5,6 +5,27 @@ Entries are added as new components are installed, tested, or refined.
 
 
 ---
+## 12-01-2026
+Suricata IDS Installation & Integration   
+- Installed and configured Suricata on the Desktop PC / Server to add network-level intrusion detection to the Cyberlab environment.
+- Updated suricata.yaml to define the correct HOME_NET subnet and enabled community-id for flow correlation.
+- Loaded and validated Suricata rules and confirmed alerts were being generated via test scans.
+- Created a dedicated Splunk index (ids) for Suricata data.
+- Configured Splunk ingestion to monitor eve.json and parse events as JSON.
+- Implemented pre-index filtering to drop low-value events (e.g. flow, stats) while retaining security-relevant data (alerts, HTTP, TLS, DNS, SSH), keeping license usage minimal.
+- Verified end-to-end visibility by triggering Suricata alerts with controlled nmap scans and confirming ingestion in Splunk.
+- Created a dedicated Suricata setup guide in the GitHub repository to fully document installation, configuration, and Splunk integration steps. [suricata IDS setup](setup/suricata-ids-setup.md)
+
+
+## 08-01-2026
+Bitcoin Node Pruning (Storage Optimization)   
+- Pruned the Bitcoin full node running in a Docker container on the Dsktop PC / Server to reduce disk usage on the external SSD.
+- Identified that the blockchain data directory (/mnt/bitcoin/data) was consuming ~830 GB, primarily due to the blocks/ directory.
+- Disabled txindex, which is incompatible with prune mode.
+- Enabled pruning in bitcoin.conf with a target size of 500 GB.
+- Final disk usage reduced to ~511 GB, freeing over 300 GB on the external SSD.
+
+
 ## 05-01-2026
 Created a dedicated Windows 10 Pro malware analysis sandbox VM using VMware on the Windows boot of the Lenovo ThinkPad.
 Installed core dynamic analysis tools inside the sandbox VM:

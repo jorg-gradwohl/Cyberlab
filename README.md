@@ -42,8 +42,9 @@ Cyberlab is a hands-on learning environment designed to:
   - Ubuntu 24.04 LTS
   - Runs:
     - **Splunk Enterprise Indexer** (active, receiving on TCP 9997)
+    - **Suricata IDS** (monitoring live network traffic)
     - Docker Engine
-    - Bitcoin Full Node (conatainer, fully synced)
+    - Bitcoin Pruned Node (conatainer, fully synced)
     - MariaDB container
   - Purpose:
     - Acts as the central SOC server
@@ -85,17 +86,19 @@ Cyberlab is a hands-on learning environment designed to:
 
 **Current Focus**
 - Get reliable logs into Splunk from all my main devices
-- Build basic visibility and simple dashboards
-- Simulate a few security events to test detections and alerts
+- Live network visibility via Suricata IDS
+- Basic dashboards and alert validation
+- Simulated security security events (port scans, service probing, ...)
 
 **Near-Term Goals**
-- Add a few small services on a spare machine to generate more interesting logs   
+- Expand network based detections (e.g. SSH, TLS, DNS behavior)   
 - Add some basic network visibility so I can see more than just endpoint logs
 - Introduce a separate device for DNS logging to widen the data sources
 
 **Medium-Term Goals**
 - Set up a small cloud-based component to bring in external traffic for analysis 
-- Begin experimenting with simple detections and basic security scenarios 
+- More structured detections and investigation workflows
+- Correlate endpoint and netwrok alerts
 
 **Long-Term Goals**
 - Create a few realistic attack/detection examples end-to-end
@@ -123,6 +126,7 @@ High-level docs and setup guides live under `docs/` and `setup/`
   - [NGINX setup](setup/nginx-setup.md)
   - [SMB / Samba setup](setup/smb-samba-setup.md)
   - [Branch heartbeat setup](setup/branch-heartbeat-setup.md)
+  - [Suricata IDS setup](setup/suricata-ids-setup.md)
 
 ---
 
