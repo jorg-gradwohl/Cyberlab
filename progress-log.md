@@ -5,6 +5,21 @@ Entries are added as new components are installed, tested, or refined.
 
 
 ---
+## 19-01-2026
+Suricata IDS Dashboard Documentation (Splunk Dashboard Studio)
+- Completed and added full documentation for the Network Security - Suricata IDS dashboard, covering all dasboard tabs:
+  - **Alerts Overview** (severity distribution, alert volume over time, top signatures/categories, top attacker IPs, top targeted internal IPs/services on SOA, most recent alerts)
+  - **HTTP Activity** (Victim 8080) (unique scanners, top scanners, top URLs, top user agents, scan rate, status codes, HTTP methods)
+  - **SOC Incident Queue** (high severity alerts, new high alerts last 15m, active high-severity incidents table)
+
+- Included each panel’s SPL query with line-by-line explanations to keep the dashboard reproducible and easy to audit.
+- Linked the dashboard doc back to the existing Suricata IDS setup guide to avoid duplicating installation/configuration instructions.
+
+[Suricata IDS Dashboard Documentation](setup/suricata-ids-setup.md)
+
+
+
+
 ## 12-01-2026
 Suricata IDS Installation & Integration   
 - Installed and configured Suricata on the Desktop PC / Server to add network-level intrusion detection to the Cyberlab environment.
