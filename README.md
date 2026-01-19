@@ -111,7 +111,7 @@ High-level docs and setup guides live under `docs/` and `setup/`
   - [Networking fundamentals](docs/networking_fundamentals.md)
 
 - **Splunk dashboards**
-  - [Suricata IDS Dashboard](setup/suricata-ids-setup.md)
+  - [Suricata IDS Dashboard](docs/splunk_dashboards/suricata_ids_dashboard.md)
   - [Branch Office Telemetry Dashboard](docs/splunk_dashboards/splunk_branch_office_dashboard.md)
   - [Endpoint Activity dashboard](docs/splunk_dashboards/endpoint_activity_dashboard.md)
 
