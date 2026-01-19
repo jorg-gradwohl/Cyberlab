@@ -38,9 +38,7 @@ Cyberlab is a hands-on learning environment designed to:
 
 ### Hardware
 
-- **Desktop PC - Primary SOC Server**
-  - Ubuntu 24.04 LTS
-  - Runs:
+- **Desktop PC - Primary SOC Server (Son-of-Anton)** - Ubuntu 24.04 LTS - Runs:
     - **Splunk Enterprise Indexer** (active, receiving on TCP 9997)
     - **Suricata IDS** (monitoring live network traffic)
     - Docker Engine
@@ -50,11 +48,9 @@ Cyberlab is a hands-on learning environment designed to:
     - Acts as the central SOC server
     - Receives telemetry from all other lab endpoints
 
-- **Lenovo ThinkPad T480 – Multi-OS Lab Workstation (Branch Office Simulation)**
-  - Dual-boot System:
-    - Ubuntu 24.04 LTS
-    - Windows 10 Pro
+- **Lenovo ThinkPad T480 – Multi-OS Lab Workstation (Cyberlab)** - Dual-boot System: Ubuntu 24.04 LTS & Windows 10 Pro
   - Kali Linux installed Ubuntu (VirtualBox)
+  - Malware Analysis Sandbox installed on Windows (VMware with Windows 10)
   - Splunk Universal Forwarder installed on Ubuntu and Windows Pro 10
   - Acts as the “Branch Office” in the Cyberlab environment:
     - Hosts lightweight services purpose-built for log generation
