@@ -17,7 +17,7 @@ Suricata IDS Dashboard Documentation (Splunk Dashboard Studio)
 
 [Suricata IDS Dashboard Documentation](setup/suricata-ids-setup.md)
 
-
+![Suricata IDS Dashboard Screenshot](assets/splunk_dashboard_suricata_tab1.png)
 
 
 ## 12-01-2026
