@@ -123,6 +123,8 @@ index=ids event_type=alert
 Purpose:
 Shows the current severity distribution of Suricata alerts. This is the fastest “how bad is it right now?” panel in the dashboard. A sudden increase in High alerts is an immediate signal to pivot into the “Most Recent Alerts” table and top signatures/categories panels for context.
 
+Note:   
+Splunk already extracts Suricata EVE JSON fileds (e.g. `alert.severity`), so `spath` is optional and only used where helpful for readability.
 
 ### 2. Security Alerts Over Time (24h) — Visualization: Line Chart
 
@@ -159,19 +161,12 @@ Shows which Suricata signatures are firing the most. This is my “what’s domi
 
 SPL Used:
 ```bash
-index=ids event_type=alert
-| spath path=alert.severity output=sev
-| where sev=1 OR sev=2
+index=ids event_type=alert ('alert.severity'=1 OR 'alert.severity'=2)
 | stats count as hits by alert.signature
 | sort - hits
 | head 10
 ```
-- `| spath path=alert.severity output=sev` - Extract alert.severity from the Suricata EVE JSON into a field called sev.
-- `| where sev=1 OR sev=2` - Filter to higher-priority alerts only:
-  - 1 = High
-  - 2 = Medium    
-  This removes Low severity noise from the ranking.
-
+- `('alert.severity'=1 OR 'alert.severity'=2)` - Filter to higher-priority alerts only.
 - `| stats count as hits by alert.signature` - Count how many times each signature fired within the filtered High/Medium set.
 - `| sort - hits` - Sort so the most frequent High/Medium signatures appear first.
 - `| head 10` - Keep only the top 10.
@@ -295,7 +290,7 @@ This service exists purely to generate realistic web traffic and scanning activi
 
 **Screenshot**    
 
-![Suricata IDS Dashboard Tab 1](../../assets/splunk_dashboard_suricata_tab2.png)
+![Suricata IDS Dashboard Tab 2](../../assets/splunk_dashboard_suricata_tab2.png)
 
 
 ### 1. Unique Web Scanners (24h) — Victim 8080 — Visualization: Single Value
@@ -428,19 +423,16 @@ The goal is to separate higher-priority alerts from background noise and provide
 
 **Screenshot**    
 
-![Suricata IDS Dashboard Tab 1](../../assets/splunk_dashboard_suricata_tab3.png)
+![Suricata IDS Dashboard Tab 3](../../assets/splunk_dashboard_suricata_tab3.png)
 
 ### 1. High Severity Alerts (24h) — Visualization: Single Value
 
 SPL Used:
 ```bash
-index=ids event_type=alert
-| spath path=alert.severity output=sev
-| where sev=1
+index=ids event_type=alert alert.severity=1
 | stats count as high_alerts
 ```
-- `| spath path=alert.severity output=sev` - Extract alert.severity from the Suricata EVE JSON into a field called sev.
-- `| where sev=1` - Filter to High severity alerts only (severity value 1).
+- `alert.severity=1` - Filter to High severity alerts only (severity value 1).
 - `| stats count as high_alerts` - Count how many High severity alerts occurred.
 
 Purpose:
@@ -451,13 +443,10 @@ Shows the total number of High severity Suricata alerts in the last 24 hours. Th
 
 SPL Used:
 ```bash
-index=ids event_type=alert
-| spath path=alert.severity output=sev
-| where sev=1
+index=ids event_type=alert alert.severity=1
 | stats count as high_alerts
 ```
-- `| spath path=alert.severity output=sev` - Extract alert.severity from the Suricata EVE JSON into a field called sev.
-- `| where sev=1` - Filter to High severity alerts only (severity value 1).
+- `alert.severity=1` - Filter to High severity alerts only (severity value 1).
 - `| stats count as high_alerts` - Count how many High severity alerts occurred.
 
 Purpose:
