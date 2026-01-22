@@ -52,14 +52,14 @@ Cyberlab is a hands-on learning environment designed to:
   - Kali Linux installed Ubuntu (VirtualBox)
   - Malware Analysis Sandbox installed on Windows (VMware with Windows 10)
   - Splunk Universal Forwarder installed on Ubuntu and Windows Pro 10
+  - Windows 10 VM (VMWare) - Sysmon installed (Olaf Hartong config) and ingesting logs into Splunk via UF
   - Acts as the “Branch Office” in the Cyberlab environment:
     - Hosts lightweight services purpose-built for log generation
     - NGINX static webpage (for HTTP access logs)
     - SMB network share (for simulated file operations)
     - Cron jobs scheduled to generate synthetic activity (HTTP GET requests and write a timestamped heartbeat entry to `branch-heartbeat.log`).
     - All relevant logs (nginx_access, nginx_error & branch_heartbeat) forwarded to Splunk (index=branch_office)
-
-  - See: [NGINX setup](setup/nginx-setup.md) and [SMB / samba setup](setup/smb-samba-setup.md)
+    - See: [NGINX setup](setup/nginx-setup.md) and [SMB / samba setup](setup/smb-samba-setup.md)
 
 - **MacBook Pro - SOC Analyst Console**  
   - Main analyst workstation for Splunk Web interface
@@ -124,6 +124,7 @@ High-level docs and setup guides live under `docs/` and `setup/`
   - [SMB / Samba setup](setup/smb-samba-setup.md)
   - [Branch heartbeat setup](setup/branch-heartbeat-setup.md)
   - [Suricata IDS setup](setup/suricata-ids-setup.md)
+  - [Sysmon setup](setup/windows-sysmon-to-splunk-setup.md)
 
 ---
 

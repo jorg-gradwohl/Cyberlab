@@ -5,6 +5,17 @@ Entries are added as new components are installed, tested, or refined.
 
 
 ---
+## 22-01-2026
+
+Sysmon (Windows Endpoint Telemetry) → Splunk Integration
+- Installed Sysmon on the Windows 10 telemetry VM (VMware Workstation) using Olaf Hartong’s hardened config (XML).
+- Installed Splunk Add-on for Sysmon (Splunk_TA_microsoft_sysmon) on SOA (the Desktop PC / Server) for proper field extractions.
+- Created a dedicated Splunk index (sysmon) and configured the UF to ingest Microsoft-Windows-Sysmon/Operational with renderXml=true.
+- Resolved parsing issues by validating the correct event source=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational so the TA applies extractions.
+- Verified ingestion + usable fields in Splunk and added a Sysmon setup guide [Sysmon setup](setup/windows-sysmon-to-splunk-setup.md)
+
+
+
 ## 19-01-2026
 Suricata IDS Dashboard Documentation (Splunk Dashboard Studio)
 - Completed and added full documentation for the Network Security - Suricata IDS dashboard, covering all dasboard tabs:
