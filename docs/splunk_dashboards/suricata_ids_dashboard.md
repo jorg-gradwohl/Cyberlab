@@ -7,7 +7,7 @@ This dashboard monitors Suricata IDS telemetry inside the Cyberlab.
 This dashboard assumes Suricata is already installed and forwarding EVE JSON events into Splunk.
 
 Suricata setup and forwarding documentation:
-- [Suricata IDS Setup (EVE → Splunk)](setup/suricata-ids-setup.md)
+- [Suricata IDS Setup (EVE → Splunk)](../../setup/suricata-ids-setup.md)
 
 ---
 

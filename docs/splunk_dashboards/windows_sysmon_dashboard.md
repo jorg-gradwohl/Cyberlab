@@ -8,7 +8,7 @@ This dashboard assumes Sysmon is already installed and forwarding Sysmon event d
 
 Sysmon setup and forwarding documentation:
 
-[Sysmon to Splunk Setup](setup/windows-sysmon-to-splunk-setup.md)
+[Sysmon to Splunk Setup](../../setup/windows-sysmon-to-splunk-setup.md)
 
 ---
 
