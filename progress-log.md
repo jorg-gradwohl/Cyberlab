@@ -5,6 +5,32 @@ Entries are added as new components are installed, tested, or refined.
 
 
 ---
+## 28-01-2026
+Sysmon Detections & Alert Documentation (Splunk)
+
+Added the first Windows Sysmon detection content to the repo:
+- [ALERT-001 Encoded PowerShell (Sysmon EID 1)](docs/alerts/alert_001_encoded_powershell.md)
+- [DET-001 Encoded PowerShell (Sysmon EID 1)](docs/detections/det_001_encoded_powershell.md)
+- [DET-002 Suspicious PowerShell Download/Exec (Sysmon EID 1)](docs/detections/det_002_suspicious_powershell_download.md)
+
+These are the first reproducible, documented Windows detections in the lab (SPL + test steps), forming the starting point for a dedicated Detections & Alerts section in the repo.
+
+Updated the README to link to the new alert and detection documentation so it’s easy to find.
+
+
+## 27-01-2026
+
+Windows Sysmon Dashboard Documentation (Splunk Dashboard Studio)
+- Completed and added documentation for the Windows Sysmon dashboard, covering both dashboard tabs:
+    - Processes (Sysmon EID 1) (event volume by EventCode, top parent → child process chains, top process creations, LOLBin review table, PowerShell activity table, and a “flag suspicious” PowerShell summary panel)
+    - Network & DNS (Sysmon EID 3 / 22) (top outbound destinations, top destination ports, external/public IP destinations, top DNS query domains, and top DNS query images)
+- Included each panel’s SPL query with clear explanations of what it’s doing and why it exists (including key SPL functions used such as like cidrmatch()), to keep the dashboard reproducible and easy to audit.
+
+[Windows Sysmon Dashboard Documentation](docs/splunk_dashboards/windows_sysmon_dashboard.md)
+
+![Sysmon Dashboard](assets/splunk_dashboard_sysmon_tab1.png)
+
+
 ## 22-01-2026
 
 Sysmon (Windows Endpoint Telemetry) → Splunk Integration
@@ -12,9 +38,8 @@ Sysmon (Windows Endpoint Telemetry) → Splunk Integration
 - Installed Splunk Add-on for Sysmon (Splunk_TA_microsoft_sysmon) on SOA (the Desktop PC / Server) for proper field extractions.
 - Created a dedicated Splunk index (sysmon) and configured the UF to ingest Microsoft-Windows-Sysmon/Operational with renderXml=true.
 - Resolved parsing issues by validating the correct event source=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational so the TA applies extractions.
-- Verified ingestion + usable fields in Splunk and added a Sysmon setup guide [Sysmon setup](setup/windows-sysmon-to-splunk-setup.md)
-
-
+- Verified ingestion + usable fields in Splunk and added a Sysmon setup guide: [Sysmon setup](setup/windows-sysmon-to-splunk-setup.md)
+- Updated README and Network Diagram
 
 ## 19-01-2026
 Suricata IDS Dashboard Documentation (Splunk Dashboard Studio)

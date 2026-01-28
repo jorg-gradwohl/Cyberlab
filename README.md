@@ -42,20 +42,20 @@ Cyberlab is a hands-on learning environment designed to:
     - **Splunk Enterprise Indexer** (active, receiving on TCP 9997)
     - **Suricata IDS** (monitoring live network traffic)
     - Docker Engine
-    - Bitcoin Pruned Node (conatainer, fully synced)
+    - Bitcoin Pruned Node (container, fully synced)
     - MariaDB container
   - Purpose:
     - Acts as the central SOC server
     - Receives telemetry from all other lab endpoints
 
 - **Lenovo ThinkPad T480 – Multi-OS Lab Workstation (Cyberlab)** - Dual-boot System: Ubuntu 24.04 LTS & Windows 10 Pro
-  - Kali Linux installed Ubuntu (VirtualBox)
-  - Malware Analysis Sandbox installed on Windows (VMware with Windows 10)
-  - Splunk Universal Forwarder installed on Ubuntu and Windows Pro 10
+  - Kali Linux installed on Ubuntu (VirtualBox)
+  - Malware Analysis Sandbox installed on Windows (VMware with Windows 10 Pro)
+  - Splunk Universal Forwarder installed on Ubuntu and Windows 10 Pro
   - Windows 10 VM (VMWare) - Sysmon installed (Olaf Hartong config) and ingesting logs into Splunk via UF
   - Acts as the “Branch Office” in the Cyberlab environment:
     - Hosts lightweight services purpose-built for log generation
-    - NGINX static webpage (for HTTP access logs)
+    - NGINX static web page (for HTTP access logs)
     - SMB network share (for simulated file operations)
     - Cron jobs scheduled to generate synthetic activity (HTTP GET requests and write a timestamped heartbeat entry to `branch-heartbeat.log`).
     - All relevant logs (nginx_access, nginx_error & branch_heartbeat) forwarded to Splunk (index=branch_office)
@@ -84,7 +84,7 @@ Cyberlab is a hands-on learning environment designed to:
 - Get reliable logs into Splunk from all my main devices
 - Live network visibility via Suricata IDS
 - Basic dashboards and alert validation
-- Simulated security security events (port scans, service probing, ...)
+- Simulated security events (port scans, service probing, ...)
 
 **Near-Term Goals**
 - Expand network based detections (e.g. SSH, TLS, DNS behavior)   
@@ -94,7 +94,7 @@ Cyberlab is a hands-on learning environment designed to:
 **Medium-Term Goals**
 - Set up a small cloud-based component to bring in external traffic for analysis 
 - More structured detections and investigation workflows
-- Correlate endpoint and netwrok alerts
+- Correlate endpoint and network alerts
 
 **Long-Term Goals**
 - Create a few realistic attack/detection examples end-to-end
@@ -115,6 +115,14 @@ High-level docs and setup guides live under `docs/` and `setup/`
   - [Suricata IDS Dashboard](docs/splunk_dashboards/suricata_ids_dashboard.md)
   - [Branch Office Telemetry Dashboard](docs/splunk_dashboards/splunk_branch_office_dashboard.md)
   - [Endpoint Activity dashboard](docs/splunk_dashboards/endpoint_activity_dashboard.md)
+
+- **Alerts**
+  - [ALERT-001 Encoded Powershell (Sysmon EID 1)](docs/alerts/alert_001_encoded_powershell.md)
+
+- **Detections**
+  - [DET-001 Encoded Powwershell (Sysmon EID 1)](docs/detections/det_001_encoded_powershell.md)
+  - [DET-002 Suspicious Powershell Download/Exec (Sysmon EID 1)](docs/detections/det_002_suspicious_powershell_download.md)
+
 
 - **Component setup guides**
   - [Docker setup](setup/docker-setup.md)
@@ -140,7 +148,10 @@ For a complete history of changes, updates, and development work, see the full *
 
 - `assets/` — banners, screenshots
 - `diagrams/` — network/topology diagrams
-- `docs/` — additional documentation (e.g., networking_fundamentals.md)
+- `docs/` — documentation (networking fundamentals, dashboards, detections, notes)
+    - `splunk_dashboards/` - dashboard write-ups & SPL breakdowns
+    - `detections/` - detection write-ups
+    - `alerts/` - alert write-ups
 - `scripts/` — automation (e.g., Nmap → SQL/Splunk)
 - `setup/` — install/config notes per component
 - [📓 Progress Log](progress-log.md) — running diary of changes and experiments
