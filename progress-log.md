@@ -5,6 +5,19 @@ Entries are added as new components are installed, tested, or refined.
 
 
 ---
+## 30-01-2026
+UFW Host Firewall Setup (SOA / Ubuntu 24.04 LTS)
+
+- Enabled and configured UFW on SOA (192.168.68.112) as a LAN-only host firewall to reduce exposure while keeping Cyberlab services accessible internally.
+- Allowed inbound LAN access to:
+    - 22/tcp (SSH)
+    - 8000/tcp (Splunk Web)
+    - 9997/tcp (Splunk receiving port)
+- Integrated UFW logging into Splunk by monitoring /var/log/ufw.log (index: endpoints, sourcetype: ufw) and added a UFWACTION field extraction for action values (ALLOW / BLOCK / AUDIT / AUDIT INVALID).
+- Updated Cyberlab Network Diagram to reflect UFW host firewall running on the desktop PC / server.
+- Updated README
+
+
 ## 28-01-2026
 Sysmon Detections & Alert Documentation (Splunk)
 

@@ -134,6 +134,7 @@ High-level docs and setup guides live under `docs/` and `setup/`
   - [Branch heartbeat setup](setup/branch-heartbeat-setup.md)
   - [Suricata IDS setup](setup/suricata-ids-setup.md)
   - [Sysmon setup](setup/windows-sysmon-to-splunk-setup.md)
+  - [UFW host firewall setup](setup/ufw-setup.md)
 
 ---
 
