@@ -27,6 +27,24 @@ User!="NT AUTHORITY\\SYSTEM"
 
 ---
 
+## SPL Breakdown (line-by-line)
+
+- `index=sysmon EventCode=1 earliest=-24h` - Search the `sysmon` index for **Process Create** events (Sysmon Event ID 1) from the **last 24 hours**.
+- `(Image="*\\powershell.exe" OR Image="*\\pwsh.exe")` - Limit results to PowerShell process executions:
+  - `powershell.exe` = Windows PowerShell
+  - `pwsh.exe` = PowerShell 7+
+- `(CommandLine="*-EncodedCommand*" OR CommandLine="* -enc*" OR CommandLine="* -e *")` - Only keep PowerShell runs where the command line suggests **encoded execution**, using common flags:
+  - `-EncodedCommand`
+  - `-enc`
+  - `-e` (short form)
+- `User!="NT AUTHORITY\\SYSTEM"` - Exclude PowerShell launched as the local SYSTEM account to reduce noise and focus on user-context executions.
+- `| table _time host User Image CommandLine ParentImage ParentCommandLine Hashes` - Output the key triage fields so you can quickly see:
+  - when it ran, which host, which user, what executed, the full command line,
+  - parent process context, and hashes.
+- `| sort - _time` - Sort newest matching events first.
+
+---
+
 ## Purpose
 
 This search provides a **simple, reproducible view** of encoded PowerShell process creation in the lab so it can be:
