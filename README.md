@@ -41,6 +41,7 @@ Cyberlab is a hands-on learning environment designed to:
 - **Desktop PC - Primary SOC Server (Son-of-Anton)** - Ubuntu 24.04 LTS - Runs:
     - **Splunk Enterprise Indexer** (active, receiving on TCP 9997)
     - **Suricata IDS** (monitoring live network traffic)
+    - **UFW** - Host Firewall
     - Docker Engine
     - Bitcoin Pruned Node (container, fully synced)
     - MariaDB container
@@ -122,6 +123,8 @@ High-level docs and setup guides live under `docs/` and `setup/`
 - **Detections**
   - [DET-001 Encoded Powwershell (Sysmon EID 1)](docs/detections/det_001_encoded_powershell.md)
   - [DET-002 Suspicious Powershell Download/Exec (Sysmon EID 1)](docs/detections/det_002_suspicious_powershell_download.md)
+  - [DET-003 BITSAdmin Transfer (Sysmon EID 1)](docs/detections/det_003_bitsadmin_transfer.md)
+  - [DET-004 CertUtil Suspicious Usage (Sysmon EID 1)](docs/detections/det_004_certutil_suspicious_usage.md)
 
 
 - **Component setup guides**

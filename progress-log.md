@@ -5,6 +5,19 @@ Entries are added as new components are installed, tested, or refined.
 
 
 ---
+## 31-01-2026
+Sysmon Detection Additions (Splunk)    
+- Added two additional Windows Sysmon detections to the repo:
+    - [DET-003 BITSAdmin Transfer (Sysmon EID 1)](docs/detections/det_003_bitsadmin_transfer.md)  
+    Hunt search to identify `bitsadmin.exe` usage consistent with background file transfer / payload staging.
+
+    - [DET-004 CertUtil Suspicious Usage (Sysmon EID 1)](docs/detections/det_004_certutil_suspicious_usage.md)  
+    Hunt search to identify suspicious `certutil.exe` usage patterns commonly used for download, decode, or file staging.
+
+- These expand the Windows LOLBin coverage by adding reproducible “living off the land” detections for two common attacker utilities.
+- Updated the README
+
+
 ## 30-01-2026
 UFW Host Firewall Setup (SOA / Ubuntu 24.04 LTS)
 
