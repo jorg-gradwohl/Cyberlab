@@ -42,9 +42,10 @@ Cyberlab is a hands-on learning environment designed to:
     - **Splunk Enterprise Indexer** (active, receiving on TCP 9997)
     - **Suricata IDS** (monitoring live network traffic)
     - **UFW** - Host Firewall
-    - Docker Engine
-    - Bitcoin Pruned Node (container, fully synced)
-    - MariaDB container
+    - Docker (conatiners):
+        - Bitcoin Pruned Node (container, fully synced)
+        - MariaDB (container)
+        - Victim Web Service (nginx container on TCP 8080, used to generate Suricata HTTP telemetry for scanning/testing)
   - Purpose:
     - Acts as the central SOC server
     - Receives telemetry from all other lab endpoints
