@@ -17,6 +17,8 @@ Sysmon Detection Additions (Splunk)
 - These expand the Windows LOLBin coverage by adding reproducible “living off the land” detections for two common attacker utilities.
 - Updated the README
 
+I also learned that UFW is a front-end to netfilter, and Docker can add its own iptables rules when ports are published—so ufw status alone isn’t the full picture. I rebuilt my MariaDB container without published ports and confirmed 3306 is no longer exposed on the host after a nmap scan revealed it being published.
+
 
 ## 30-01-2026
 UFW Host Firewall Setup (SOA / Ubuntu 24.04 LTS)
