@@ -5,6 +5,12 @@ Entries are added as new components are installed, tested, or refined.
 
 
 ---
+## 01-02-2026
+Findings folder + first write-up
+- Added `/findings/` to document security observations and mitigations in Cyberlab.
+- Published Finding-001: UFW status hides Docker-published ports (iptables/netfilter is the source of truth).
+    - [Finding-001 UFW vs IPtables](docs/findings/finding_001_ufw_vs_iptables.md)
+
 ## 31-01-2026
 Sysmon Detection Additions (Splunk)    
 - Added two additional Windows Sysmon detections to the repo:

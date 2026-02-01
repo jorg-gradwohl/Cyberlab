@@ -112,6 +112,9 @@ High-level docs and setup guides live under `docs/` and `setup/`
 - **Networking & fundamentals**
   - [Networking fundamentals](docs/networking_fundamentals.md)
 
+- **Findings**
+  - [Finding-001 UFW vs IPtables](docs/findings/finding_001_ufw_vs_iptables.md) - Firewall gotcha: Docker-published ports can be reachable even if they don’t appear in ufw status.
+
 - **Splunk dashboards**
   - [Windows Sysmon Dashboard](docs/splunk_dashboards/windows_sysmon_dashboard.md)
   - [Suricata IDS Dashboard](docs/splunk_dashboards/suricata_ids_dashboard.md)
@@ -154,8 +157,9 @@ For a complete history of changes, updates, and development work, see the full *
 - `assets/` — banners, screenshots
 - `diagrams/` — network/topology diagrams
 - `docs/` — documentation (networking fundamentals, dashboards, detections, notes)
+    - `findings` - short write-ups documenting security observations and mitigations
     - `splunk_dashboards/` - dashboard write-ups & SPL breakdowns
-    - `detections/` - detection write-ups
+    - `detections/` - detection write-ups / saved splunk searches
     - `alerts/` - alert write-ups
 - `scripts/` — automation (e.g., Nmap → SQL/Splunk)
 - `setup/` — install/config notes per component
