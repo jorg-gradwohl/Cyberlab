@@ -5,6 +5,18 @@ Entries are added as new components are installed, tested, or refined.
 
 
 ---
+## 02-02-2026
+UFW Detection Additions (SOA / Splunk)  
+- Added two new UFW-based detections to the repo to capture scan / probing behaviour from host firewall telemetry on SOA:
+  - [DET-005 SOA UFW — Top Blocked Sources (Ports/Proto)](docs/detections/det_005_ufw_top_blocked_sources%20.md)  
+    Quick hunt to identify the noisiest blocked source IPs and the most-targeted destination ports/protocols.
+
+  - [DET-006 SOA UFW Port Sweep / Multi-Port Probe (Blocks)](docs/detections/det_006_ufw_port_sweep_blocks.md)  
+    Hunt search to flag potential port-sweep behaviour by spotting sources generating blocked traffic across many destination ports.
+
+- Updated README to include both new UFW detections.
+
+
 ## 01-02-2026
 Findings folder + first write-up
 - Added `/findings/` to document security observations and mitigations in Cyberlab.
