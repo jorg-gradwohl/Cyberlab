@@ -82,26 +82,24 @@ Cyberlab is a hands-on learning environment designed to:
 
 ## Roadmap
 
-**Current Focus**
-- Get reliable logs into Splunk from all my main devices
-- Live network visibility via Suricata IDS
-- Basic dashboards and alert validation
-- Simulated security events (port scans, service probing, ...)
+**Current Fent Focus**
+- Stable telemetry into Splunk from the core Cyberlab systems
+- Network visibility via Suricata IDS on SOA, plus host firewall visibility via UFW
+- Build small dashboards and validate detections with controlled test activity
+- Produce clean, repeatable documentation (detections, alerts, and short case write-ups)
 
 **Near-Term Goals**
-- Expand network based detections (e.g. SSH, TLS, DNS behavior)   
-- Add some basic network visibility so I can see more than just endpoint logs
-- Introduce a separate device for DNS logging to widen the data sources
+- Expand network-focused detections beyond simple scan signatures (e.g., SSH, web traffic patterns, DNS behaviour once available)
+- Add more “analyst-style” workflows: alert → triage steps → quick report
 
 **Medium-Term Goals**
-- Set up a small cloud-based component to bring in external traffic for analysis 
-- More structured detections and investigation workflows
-- Correlate endpoint and network alerts
+- Broaden visibility beyond a single Suricata sensor position (better network coverage or additional sensor placement)
+- Introduce additional telemetry sources (e.g., DNS logging) and build matching detections + dashboards
+- Start correlating endpoint + network + firewall activity
 
 **Long-Term Goals**
-- Create a few realistic attack/detection examples end-to-end
-- Improve documentation, add diagrams/screenshots
-- Optionally integrate a second SIEM (like Microsoft Sentinel) later   
+- Build a small set of realistic end-to-end scenarios (test activity → detection/alert → investigation notes → report)
+- Optionally add a second SIEM later (e.g., Microsoft Sentinel) for comparison and expanded skill coverage  
 
 ---
 
@@ -112,26 +110,31 @@ High-level docs and setup guides live under `docs/` and `setup/`
 - **Networking & fundamentals**
   - [Networking fundamentals](docs/networking_fundamentals.md)
 
+- **Detections**
+  - [DET-001 Encoded Powwershell (Sysmon EID 1)](docs/detections/det_001_encoded_powershell.md)
+  - [DET-002 Suspicious Powershell Download/Exec (Sysmon EID 1)](docs/detections/det_002_suspicious_powershell_download.md)
+  - [DET-003 BITSAdmin Transfer (Sysmon EID 1)](docs/detections/det_003_bitsadmin_transfer.md)
+  - [DET-004 CertUtil Suspicious Usage (Sysmon EID 1)](docs/detections/det_004_certutil_suspicious_usage.md)
+  - [DET-005 SOA UFW - Top Blocked Sources (Ports/Proto)](docs/detections/det_005_ufw_top_blocked_sources.md)
+  - [DET-006 SOA UFW - Port Sweep / Multi-Port Probe(Blocks)](docs/detections/det_006_ufw_port_sweep_blocks.md)
+  - [DET-007 Suricata — Nmap/Port Scan (ET SCAN by unique ports)](docs/detections/det_007_suricata_port_scan.md)
+
+- **Alerts**
+  - [ALERT-001 Encoded Powershell (Sysmon EID 1)](docs/alerts/alert_001_encoded_powershell.md)
+  - [ALERT-002 ET SCAN Recon Activity Detected (Port Scan/Probing)](docs/alerts/alert_002_port_scan_activity.md)
+
+- **Reports**
+  - [CASE-001 — Nmap Port Scan Against SOA Detected (Suricata + UFW corroboration)](docs/reports/case_001_nmap_scan_against_soa_detected.md)
+
 - **Findings**
   - [Finding-001 UFW vs IPtables](docs/findings/finding_001_ufw_vs_iptables.md) - Firewall gotcha: Docker-published ports can be reachable even if they don’t appear in ufw status.
+  - [Finding-002: Suricata default HOME_NET/EXTERNAL_NET settings suppress internal scan alerts in a lab](docs/findings/finding_002:_suricata_ssettings_suppress_internal_scan_alerts.md)
 
 - **Splunk dashboards**
   - [Windows Sysmon Dashboard](docs/splunk_dashboards/windows_sysmon_dashboard.md)
   - [Suricata IDS Dashboard](docs/splunk_dashboards/suricata_ids_dashboard.md)
   - [Branch Office Telemetry Dashboard](docs/splunk_dashboards/splunk_branch_office_dashboard.md)
   - [Endpoint Activity dashboard](docs/splunk_dashboards/endpoint_activity_dashboard.md)
-
-- **Alerts**
-  - [ALERT-001 Encoded Powershell (Sysmon EID 1)](docs/alerts/alert_001_encoded_powershell.md)
-
-- **Detections**
-  - [DET-001 Encoded Powwershell (Sysmon EID 1)](docs/detections/det_001_encoded_powershell.md)
-  - [DET-002 Suspicious Powershell Download/Exec (Sysmon EID 1)](docs/detections/det_002_suspicious_powershell_download.md)
-  - [DET-003 BITSAdmin Transfer (Sysmon EID 1)](docs/detections/det_003_bitsadmin_transfer.md)
-  - [DET-004 CertUtil Suspicious Usage (Sysmon EID 1)](docs/detections/det_004_certutil_suspicious_usage.md)
-  - [DET-005 SOA UFW - Top Blocked Sources (Ports/Proto)](docs/detections/det_005_ufw_top_blocked_sources .md)
-  - [DET-006 SOA UFW - Port Sweep / Multi-Port Probe(Blocks)](docs/detections/det_006_ufw_port_sweep_blocks.md)
-
 
 - **Component setup guides**
   - [Docker setup](setup/docker-setup.md)
@@ -159,10 +162,11 @@ For a complete history of changes, updates, and development work, see the full *
 - `assets/` — banners, screenshots
 - `diagrams/` — network/topology diagrams
 - `docs/` — documentation (networking fundamentals, dashboards, detections, notes)
-    - `findings` - short write-ups documenting security observations and mitigations
-    - `splunk_dashboards/` - dashboard write-ups & SPL breakdowns
     - `detections/` - detection write-ups / saved splunk searches
     - `alerts/` - alert write-ups
+    - `reports` - case reports & incidence response reports (lab excercises & real events)
+    - `findings` - lab findings & fixes (config issues,root causes, mitigations)
+    - `splunk_dashboards/` - dashboard write-ups & SPL breakdowns    
 - `scripts/` — automation (e.g., Nmap → SQL/Splunk)
 - `setup/` — install/config notes per component
 - [📓 Progress Log](progress-log.md) — running diary of changes and experiments

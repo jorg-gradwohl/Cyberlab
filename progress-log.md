@@ -5,10 +5,32 @@ Entries are added as new components are installed, tested, or refined.
 
 
 ---
+## 03-02-2026
+Suricata Port Scan Detection + Alert + First Case Report
+
+- Added a new Suricata-based scan detection to validate internal recon visibility in Splunk:
+  - [DET-007 Suricata — Nmap/Port Scan (ET SCAN by unique ports))](docs/detections/det_007_suricata_port_scan.md)  
+    Hunt/validation search that buckets ET SCAN alerts into 5-minute windows and flags scan-like bursts based on unique destination ports, alert volume, and signature variety.
+
+- Turned the Suricata scan detection into a scheduled alert for continuous monitoring:
+  - [ALERT-002 ET SCAN Recon Activity Detected (Port Scan/Probing)](docs/alerts/alert_002_port_scan_activity.md)  
+    Scheduled hourly with throttling to avoid spam; logs into Triggered Alerts for a SOC-style queue.
+
+- Published the first Cyberlab case report to document an end-to-end “test → detect → corroborate” workflow:
+  - [CASE-001 — Nmap Port Scan Against SOA Detected (Suricata + UFW corroboration)](docs/reports/case_001_nmap_scan_against_soa_detected.md)  
+    Correlates Suricata ET SCAN alerts with UFW multi-port block telemetry to confirm recon behaviour and verify the pipeline is working.
+
+- Documented a Suricata config finding that affects internal detection visibility in a home lab:
+  - [Finding-002: Suricata default HOME_NET/EXTERNAL_NET settings suppress internal scan alerts in a lab](docs/findings/finding_002:_suricata_ssettings_suppress_internal_scan_alerts.md)  
+    Adjusted network variable scope so internal lab scans are not excluded from triggering scan signatures.
+
+- Updated README to include the new detection, alert, case report, and finding.
+
+
 ## 02-02-2026
 UFW Detection Additions (SOA / Splunk)  
 - Added two new UFW-based detections to the repo to capture scan / probing behaviour from host firewall telemetry on SOA:
-  - [DET-005 SOA UFW — Top Blocked Sources (Ports/Proto)](docs/detections/det_005_ufw_top_blocked_sources%20.md)  
+  - [DET-005 SOA UFW — Top Blocked Sources (Ports/Proto)](docs/detections/det_005_ufw_top_blocked_sources.md)  
     Quick hunt to identify the noisiest blocked source IPs and the most-targeted destination ports/protocols.
 
   - [DET-006 SOA UFW Port Sweep / Multi-Port Probe (Blocks)](docs/detections/det_006_ufw_port_sweep_blocks.md)  
