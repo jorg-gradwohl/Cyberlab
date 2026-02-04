@@ -5,6 +5,25 @@ Entries are added as new components are installed, tested, or refined.
 
 
 ---
+# 04-02-2026
+OWASP ZAP Web Scan → Suricata Web Alert Burst Detection + Case Report
+
+- Added a new intentionally vulnerable web target to generate realistic web-attack telemetry against SOA:
+  - Deployed **OWASP Juice Shop** in a new Docker container on **SOA** and exposed it on **TCP 3000** (LAN only)
+- Installed **OWASP ZAP** on Kali to generate controlled “web attack” activity for detection validation
+  - Ran an **Automated Scan** against the Juice Shop target (SOA:3000) to generate web probing / exploit-style traffic
+
+- Published a new Suricata detection focused on web exploitation signature bursts:
+  - [DET-008 Suricata — Web Attack Signature Burst (ET WEB / HUNTING)](docs/detections/det_008_suricata_web_attack)  
+
+- Published a second case report to document the end-to-end workflow (test → detect → corroborate):
+  - [CASE-002 — Web Scanner Activity Against SOA Detected (Suricata DET-008 + UFW corroboration)](docs/reports/case_002_web_scanner_activity.md)  
+
+**Screenshot**
+
+![OWASP Zap](assets/owasp_zap.png)
+
+
 ## 03-02-2026
 Suricata Port Scan Detection + Alert + First Case Report
 
@@ -21,7 +40,7 @@ Suricata Port Scan Detection + Alert + First Case Report
     Correlates Suricata ET SCAN alerts with UFW multi-port block telemetry to confirm recon behaviour and verify the pipeline is working.
 
 - Documented a Suricata config finding that affects internal detection visibility in a home lab:
-  - [Finding-002: Suricata default HOME_NET/EXTERNAL_NET settings suppress internal scan alerts in a lab](docs/findings/finding_002:_suricata_ssettings_suppress_internal_scan_alerts.md)  
+  - [Finding-002 Suricata default HOME_NET/EXTERNAL_NET settings suppress internal scan alerts in a lab](docs/findings/finding_002_suricata_settings_suppress_internal_scan_alerts.md)  
     Adjusted network variable scope so internal lab scans are not excluded from triggering scan signatures.
 
 - Updated README to include the new detection, alert, case report, and finding.

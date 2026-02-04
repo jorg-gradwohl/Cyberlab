@@ -1,6 +1,6 @@
 # CASE-001 — Nmap Port Scan Against SOA Detected (Suricata + UFW corroboration)
 
-**Date:** 2026-02-02  
+**Date:** 02-02-2026  
 **Environment:** Cyberlab  
 **Target:** 192.168.68.112 (SOA)  
 **Sources observed:** 192.168.68.123 (MacBook), 192.168.68.117 (Kali VM)

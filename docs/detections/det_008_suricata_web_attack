@@ -1,0 +1,95 @@
+# DET-008 Suricata — Web Attack Signature Burst (ET WEB / HUNTING)
+
+This detection identifies **web-attack-style behaviour** against SOA by looking for bursts of Suricata **alert signatures** that are commonly associated with web exploitation attempts, recon, or suspicious web probing.
+
+It is intended as a **hunt/validation search** to confirm that web scanning activity is visible in Splunk through Suricata alert telemetry.
+
+---
+
+## Data Source Used in This Detection
+
+SOA (Desktop PC / Ubuntu Server) — Suricata IDS alert telemetry (EVE JSON)
+
+- Index: `ids`
+- Sourcetype: `suricata:eve`
+- Host: `SOA` (Suricata sensor)
+- Key fields used: `event_type`, `app.proto`, `alert.signature`, `alert.category`, `src_ip`, `dest_ip`, `dest_port`
+
+---
+
+## SPL Used
+```bash
+index=ids sourcetype=suricata:eve event_type=alert app_proto=http
+(
+  alert.signature="ET WEB_SERVER*" OR
+  alert.signature="ET HUNTING*" OR
+  alert.category="Web Application Attack" OR
+  alert.category="Attempted Administrator Privilege Gain" OR
+  alert.category="Attempted Information Leak"
+)
+| bin _time span=5m
+| stats count as hits dc(dest_port) as distinct_dest_ports dc(alert.signature) as sig_count
+        values(alert.signature) as signatures values(alert.category) as categories
+  by _time src_ip dest_ip
+| where hits >= 10 OR sig_count >= 3
+| sort - _time
+```
+
+---
+
+## SPL Breakdown (line-by-line)
+
+- `index=ids sourcetype=suricata:eve event_type=alert app_proto=http ...` - Search Suricata **HTTP** alert events (app-layer protocol identified as HTTP).
+
+- `( alert.signature="ET WEB_SERVER*" OR alert.signature="ET HUNTING*" OR ... )`
+  Focus on signatures/categories that are commonly relevant during web probing:
+  - `ET WEB_SERVER*` = Emerging Threats web-server related alerts (often noisy, but useful in bursts)
+  - `ET HUNTING*` = hunting-style signatures (can include recon / suspicious patterns)
+  - `alert.category=...` = include higher-level categories that frequently show up during web attacks or suspicious web behavior
+
+- `| bin _time span=5m` - Bucket into **5-minute windows** so bursts stand out (scan/probe behavior is usually “spiky”, not steady).
+
+- `| stats ... by _time src_ip dest_ip` - Aggregate activity **per time window, per source, per target**:
+  - `count as hits` = total alert volume in that window
+  - `dc(dest_port) as distinct_dest_ports` = number of distinct destination ports involved (context metric; should usually be low for normal web use)
+  - `dc(alert.signature) as sig_count` = number of distinct signatures (variety often increases during scanning)
+  - `values(alert.signature) as signatures` = quick context for what fired
+  - `values(alert.category) as categories` = quick grouping / triage context
+
+- `| where hits >= 10 OR sig_count >= 3` - Keep results that look “burst-like”:
+  - either lots of alerts in a short window, OR
+  - multiple distinct signatures firing (stronger scan/probe signal)
+
+- `| sort - _time` - Newest activity first.
+
+---
+
+## Purpose
+
+This search provides a **simple, reproducible view** of suspicious web probing activity by highlighting:
+- which **source IP** generated the burst
+- which **target** was hit
+- how many alerts fired in short windows
+- how many distinct destination ports were involved (context / triage signal)
+- which signatures and categories were involved (fast triage context)
+
+---
+
+## Notes (Lab Context)
+
+- This detection is designed to be **tool-agnostic**: it may trigger from ZAP, Burp, Nikto, scripted fuzzing, or other web scanners.
+- It is **not** limited to a single port in the SPL (so it will still work if the web target moves from 3000 to 8080, etc.).
+- In a real environment, I would probably add **asset scoping** (e.g., only web servers) and maybe tune thresholds to reduce noise.
+
+---
+
+## Alert Status
+
+Not yet converted into an alert.
+
+---
+
+## Evidence (Example)
+
+Screenshot:
+![DET-008 Example Results](../../assets/splunk_detection_008.png)
