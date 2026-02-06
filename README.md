@@ -42,10 +42,11 @@ Cyberlab is a hands-on learning environment designed to:
     - **Splunk Enterprise Indexer** (active, receiving on TCP 9997)
     - **Suricata IDS** (monitoring live network traffic)
     - **UFW** - Host Firewall
-    - Docker (conatiners):
+    - Docker (containers):
         - Bitcoin Pruned Node (container, fully synced)
         - MariaDB (container)
         - Victim Web Service (nginx container on TCP 8080, used to generate Suricata HTTP telemetry for scanning/testing)
+        - OWASP Juice Shop (TCP 3000)
   - Purpose:
     - Acts as the central SOC server
     - Receives telemetry from all other lab endpoints
@@ -82,7 +83,7 @@ Cyberlab is a hands-on learning environment designed to:
 
 ## Roadmap
 
-**Current Fent Focus**
+**Current Focus**
 - Stable telemetry into Splunk from the core Cyberlab systems
 - Network visibility via Suricata IDS on SOA, plus host firewall visibility via UFW
 - Build small dashboards and validate detections with controlled test activity
@@ -111,24 +112,27 @@ High-level docs and setup guides live under `docs/` and `setup/`
   - [Networking fundamentals](docs/networking_fundamentals.md)
 
 - **Detections**
-  - [DET-001 Encoded Powwershell (Sysmon EID 1)](docs/detections/det_001_encoded_powershell.md)
+  - [DET-001 Encoded Powershell (Sysmon EID 1)](docs/detections/det_001_encoded_powershell.md)
   - [DET-002 Suspicious Powershell Download/Exec (Sysmon EID 1)](docs/detections/det_002_suspicious_powershell_download.md)
   - [DET-003 BITSAdmin Transfer (Sysmon EID 1)](docs/detections/det_003_bitsadmin_transfer.md)
   - [DET-004 CertUtil Suspicious Usage (Sysmon EID 1)](docs/detections/det_004_certutil_suspicious_usage.md)
   - [DET-005 SOA UFW - Top Blocked Sources (Ports/Proto)](docs/detections/det_005_ufw_top_blocked_sources.md)
   - [DET-006 SOA UFW - Port Sweep / Multi-Port Probe(Blocks)](docs/detections/det_006_ufw_port_sweep_blocks.md)
   - [DET-007 Suricata — Nmap/Port Scan (ET SCAN by unique ports)](docs/detections/det_007_suricata_port_scan.md)
+  - [DET-008 DET-008 Suricata — Web Attack Signature Burst (ET WEB / HUNTING)](docs/detections/det_008_suricata_web_attack)
 
 - **Alerts**
   - [ALERT-001 Encoded Powershell (Sysmon EID 1)](docs/alerts/alert_001_encoded_powershell.md)
   - [ALERT-002 ET SCAN Recon Activity Detected (Port Scan/Probing)](docs/alerts/alert_002_port_scan_activity.md)
 
 - **Reports**
-  - [CASE-001 — Nmap Port Scan Against SOA Detected (Suricata + UFW corroboration)](docs/reports/case_001_nmap_scan_against_soa_detected.md)
+  - [CASE-001 Nmap Port Scan Against SOA Detected (Suricata + UFW corroboration)](docs/reports/case_001_nmap_scan_against_soa_detected.md)
+  - [CASE-002 Web Scanner Activity Against Juice Shop Detected (Suricata + UFW corroboration)](docs/reports/case_002_web_scanner_activity.md)
+  - [VULN-001 Nessus Finding: Splunk Information Disclosure Vulnerability (SP-CAAAP5E) (Fixed)](docs/reports/vuln_001_nessus_finding_splunk_info_disclosure.md)
 
 - **Findings**
   - [Finding-001 UFW vs IPtables](docs/findings/finding_001_ufw_vs_iptables.md) - Firewall gotcha: Docker-published ports can be reachable even if they don’t appear in ufw status.
-  - [Finding-002: Suricata default HOME_NET/EXTERNAL_NET settings suppress internal scan alerts in a lab](docs/findings/finding_002:_suricata_ssettings_suppress_internal_scan_alerts.md)
+  - [Finding-002 Suricata default HOME_NET/EXTERNAL_NET settings suppress internal scan alerts in a lab](docs/findings/finding_002_suricata_settings_suppress_internal_scan_alerts.md)
 
 - **Splunk dashboards**
   - [Windows Sysmon Dashboard](docs/splunk_dashboards/windows_sysmon_dashboard.md)
@@ -164,7 +168,7 @@ For a complete history of changes, updates, and development work, see the full *
 - `docs/` — documentation (networking fundamentals, dashboards, detections, notes)
     - `detections/` - detection write-ups / saved splunk searches
     - `alerts/` - alert write-ups
-    - `reports` - case reports & incidence response reports (lab excercises & real events)
+    - `reports` - incidents, cases and remediations (lab exercises & real events)
     - `findings` - lab findings & fixes (config issues,root causes, mitigations)
     - `splunk_dashboards/` - dashboard write-ups & SPL breakdowns    
 - `scripts/` — automation (e.g., Nmap → SQL/Splunk)

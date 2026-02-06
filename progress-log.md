@@ -5,6 +5,29 @@ Entries are added as new components are installed, tested, or refined.
 
 
 ---
+## 06-02-2026  
+Nessus Advanced Scan → Splunk Information Disclosure Vulnerability + Remediation Writeup
+
+- Installed and configured **Nessus Essentials** on Kali (VM) to validate vuln scanning workflow in Cyberlab
+- Ran a **Nessus Advanced Scan** against **SOA (192.168.68.112)** and reviewed findings
+  - One **Medium** finding flagged: **Splunk Information Disclosure Vulnerability (SP-CAAAP5E / CVE-2018-11409)**
+
+- Investigated the finding using Splunk vendor documentation + REST API reference, then validated locally:
+  - Confirmed **unauthenticated** access to the Splunk management API endpoint on **127.0.0.1:8089** returned instance/system/license metadata (**HTTP 200 OK**)
+  - Verified scope: **8089 is blocked on the LAN by UFW**, so the exposure was **local-only** (not reachable from other hosts)
+
+- Remediated by hardening Splunk REST handler auth config:
+  - Updated `/opt/splunk/etc/system/local/restmap.conf` to set `requireAuthentication = true` for `server-info` stanzas
+  - Restarted Splunk and re-tested to confirm **HTTP 401 Unauthorized**
+
+- Published a new finding writeup documenting the end-to-end workflow (scan → research → validate → remediate → re-test):
+  - [VULN-001 Nessus Finding: Splunk Information Disclosure Vulnerability (SP-CAAAP5E) (Fixed)](/docs/reports/vuln_001_nessus_finding_splunk_info_disclosure.md)
+
+**Screenshot**
+
+![Nessus Medium Finding](assets/vuln_001.png)
+
+
 # 04-02-2026
 OWASP ZAP Web Scan → Suricata Web Alert Burst Detection + Case Report
 
