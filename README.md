@@ -124,8 +124,10 @@ High-level docs and setup guides live under `docs/` and `setup/`
 - **Alerts**
   - [ALERT-001 Encoded Powershell (Sysmon EID 1)](docs/alerts/alert_001_encoded_powershell.md)
   - [ALERT-002 ET SCAN Recon Activity Detected (Port Scan/Probing)](docs/alerts/alert_002_port_scan_activity.md)
+  - [ALERT-003 Juice Shop — Possible Brute Force (≥10 failed logins / 5m)](docs/alerts/alert_003_possible_brute_force.md)
 
 - **Reports**
+  - [IR-001 Brute Force Attempt Against OWASP Juice Shop Login (Hydra) — Detected via Splunk + Suricata](docs/reports/ir_001_brute_force_attempt_juice_shop.md)
   - [CASE-001 Nmap Port Scan Against SOA Detected (Suricata + UFW corroboration)](docs/reports/case_001_nmap_scan_against_soa_detected.md)
   - [CASE-002 Web Scanner Activity Against Juice Shop Detected (Suricata + UFW corroboration)](docs/reports/case_002_web_scanner_activity.md)
   - [VULN-001 Nessus Finding: Splunk Information Disclosure Vulnerability (SP-CAAAP5E) (Fixed)](docs/reports/vuln_001_nessus_finding_splunk_info_disclosure.md)

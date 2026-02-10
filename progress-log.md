@@ -5,6 +5,23 @@ Entries are added as new components are installed, tested, or refined.
 
 
 ---
+## 10-02-2026  
+Juice Shop Brute Force Detection + IR Writeup (Hydra → Splunk Alert)
+
+- Built a new Splunk scheduled alert to flag **possible brute force** against OWASP Juice Shop:
+  - **ALERT-003 Juice Shop — Possible Brute Force (>=10 failed logins / 5m)**
+  - Uses **Suricata HTTP telemetry** (`index=ids`, `sourcetype=suricata:eve`) to detect repeated `401` responses to `/rest/user/login`
+  - Validated that the alert triggers reliably during sustained automated login attempts
+
+- Ran a controlled brute-force style lab test using **Hydra** against **SOA:3000 (Juice Shop)** to generate detection telemetry:
+  - Confirmed the alert triggered (twice) due to the activity spanning multiple 5-minute windows
+  - Observed **Hydra** in `http.http_user_agent` in Splunk results (useful triage context)
+
+- Published a new incident response report documenting the lab workflow (simulate → detect → triage):
+  - `docs/reports/ir_001_juice_shop_bruteforce_hydra.md` - Includes evidence screenshots (alert results + dashboard context)
+
+![Splunk Alert](assets/ir_001_01.png)
+
 ## 06-02-2026  
 Nessus Advanced Scan → Splunk Information Disclosure Vulnerability + Remediation Writeup
 
@@ -28,7 +45,7 @@ Nessus Advanced Scan → Splunk Information Disclosure Vulnerability + Remediati
 ![Nessus Medium Finding](assets/vuln_001.png)
 
 
-# 04-02-2026
+## 04-02-2026
 OWASP ZAP Web Scan → Suricata Web Alert Burst Detection + Case Report
 
 - Added a new intentionally vulnerable web target to generate realistic web-attack telemetry against SOA:
