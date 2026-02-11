@@ -5,6 +5,16 @@ Entries are added as new components are installed, tested, or refined.
 
 
 ---
+## 11-02-2026  
+Suricata IDS Dashboard Documentation Update (Juice Shop Tab)
+
+- Updated the **[Network Security – Suricata IDS](/docs/splunk_dashboards/suricata_ids_dashboard.md)** dashboard documentation to reflect the new **Juice Shop (Victim 3000)** tab
+  - Tab is a basically a copy of the **Victim 8080** HTTP activity view, updated to `dest_port=3000`
+  - Includes the additional **Potential Brute Force Attempts — Juice Shop** panel (based on **[ALERT-003](/docs/alerts/alert_003_possible_brute_force.md)** logic)
+  - Added a small **HTTP status code reference image** panel for faster interpretation during triage
+
+![New Dashboard Tab](assets/splunk_dashboard_suricata_tab3_new.png)
+
 ## 10-02-2026  
 Juice Shop Brute Force Detection + IR Writeup (Hydra → Splunk Alert)
 

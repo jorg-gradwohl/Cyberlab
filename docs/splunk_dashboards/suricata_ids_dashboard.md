@@ -29,7 +29,7 @@ To provide a fast, analyst-friendly overview of Suricata alerts over the last 24
 This dashboard is not trying to be a full SIEM correlation engine yet.
 It is a clear Suricata alert view that lets me triage what is happening in the lab quickly.
 
-## 2. Practical Web Attack Visibility (Victim 8080)
+## 2. Practical Web Attack Visibility (Victim Services)
 
 To give a dedicated view of HTTP scanning activity against the lab victim service on port 8080, including:
 - unique scanners
@@ -39,20 +39,24 @@ To give a dedicated view of HTTP scanning activity against the lab victim servic
 - scan rate over time
 - HTTP status code breakdown
 - HTTP method breakdown
+- potential brute force attempts
 
-This makes it easy to validate that scans are actually hitting the victim service and that Suricata is capturing the activity.
+This makes it easy to validate that scans / tooling are actually hitting the victim service and that Suricata is capturing the activity.
 
 ---
 
 ## Dashboard Structure (Tabs)
 
-This dashboard is split into three tabs:
+This dashboard is split into four tabs:
 
 - **Alerts Overview**    
     The main Suricata alert triage view (severity, categories, signatures, top IPs/ports, recent alerts).
 
 - **HTTP Activity (Victim 8080)**    
-    Focused web-traffic scanning view for the victim service running on port 8080.
+    Focused web-traffic visibility for the victim service running on port 8080 (telemetry)
+
+- **Juice Shop (Victim 3000)**    
+    Focused web-traffic visibility for OWASP Juice Shop on port 3000.
 
 - **SOC Incident Queue**    
     A high-severity queue view:
@@ -415,8 +419,21 @@ index=ids event_type=http dest_port=8080
 Purpose:
 Shows which HTTP methods are being used against the victim service on port 8080. High volumes of unusual methods (beyond typical GET/HEAD) can indicate probing for upload endpoints, API abuse, or exploit tooling.
 
+## Tab 3 — Juice Shop (Victim 3000)
 
-## Tab 3 — SOC Incident Queue
+This tab is basially a copy of Tab 2 (Victim 8080), re-scoped to **OWASP Juice Shop** on port 3000.
+
+### What's different in this tab vs Victim 8080
+
+- All HTTP panels are focused on Juice Shop traffic (`dest_port=3000`). This makes it suitable for real lab attack simulation.
+- Additional panel: **Potential Brute Force Attempts** based on **[ALERT-003](/docs/alerts/alert_003_possible_brute_force.md)** logic (failed login pattern). 
+- Reference Image panel: **HTTP Status Codes Legend**
+
+**Screenshot**
+
+![Suricata IDS Dashboard Tab 3 - Juice Shop](/assets/splunk_dashboard_suricata_tab3_new.png)
+
+## Tab 4 — SOC Incident Queue
 
 Each panel in this tab surfaces high-severity Suricata activity in a simple “queue” view.
 The goal is to separate higher-priority alerts from background noise and provide a short list of events an analyst would review first.
