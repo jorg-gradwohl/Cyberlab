@@ -5,6 +5,13 @@ Entries are added as new components are installed, tested, or refined.
 
 
 ---
+## 12-02-2026  
+ALERT-003 Juice Shop Brute Force Alert Logic Update (401 → Endpoint Rate)
+
+- Updated **[ALERT-003](/docs/alerts/alert_003_possible_brute_force.md)** to remove the `http.status=401` dependency and detect **high-rate login requests** to `/rest/user/login` instead
+  - Reason: OWASP Juice Shop can return **HTTP 200** for failed logins (failure indicated in the response body), and Suricata HTTP telemetry does not reliably capture that
+  - Result: alert now triggers on **behaviour (request rate)** rather than status-code-based “failures” to avoid missing real brute force activity
+
 ## 11-02-2026  
 Suricata IDS Dashboard Documentation Update (Juice Shop Tab)
 
