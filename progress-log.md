@@ -5,6 +5,21 @@ Entries are added as new components are installed, tested, or refined.
 
 
 ---
+## 20-02-2026   
+IR Runbook + IR Report Template Added + Suricata IDS Dashboard (Juice Shop Tab) Update + IR-002 Report
+
+- Added a generic SOC-style incident response runbook to the repo: [IR Runbook](docs/ir_runbook.md)
+- Added a standard incident response report template to speed up consistent writeups: [IR Template](/docs/ir_report_template.md)
+
+- Updated the **Network Security – Suricata IDS** dashboard (Juice Shop / Victim 3000 tab):
+  - Renamed **Unique Web Scanners** → **Unique High-Rate HTTP Sources** (same SPL; title corrected for accuracy)
+  - Added a new IDS-focused panel: **Top Signatures — Juice Shop (3000)** (Suricata alert signatures scoped to `dest_port=3000`)
+- Updated the dashboard documentation to reflect the Juice Shop tab changes: [Network Security – Suricata IDS](/docs/splunk_dashboards/suricata_ids_dashboard.md)
+
+- Published a new incident response report:
+  - [IR-002 — Suricata Web Alert Burst – Juice Shop (SOA:3000)](/docs/reports/ir_002_suricata_web_alert_burst_juice_shop.md)
+
+
 ## 18-02-2026  
 Juice Shop Docker Logs → Splunk Ingestion (`index=docker`)
 

@@ -421,13 +421,15 @@ Shows which HTTP methods are being used against the victim service on port 8080.
 
 ## Tab 3 — Juice Shop (Victim 3000)
 
-This tab is basially a copy of Tab 2 (Victim 8080), re-scoped to **OWASP Juice Shop** on port 3000.
+This tab is based on Tab 2 (Victim 8080), but re-scoped to **OWASP Juice Shop** running on **TCP 3000**.
 
 ### What's different in this tab vs Victim 8080
 
-- All HTTP panels are focused on Juice Shop traffic (`dest_port=3000`). This makes it suitable for real lab attack simulation.
-- Additional panel: **Potential Brute Force Attempts** based on **[ALERT-003](/docs/alerts/alert_003_possible_brute_force.md)** logic (failed login pattern). 
-- Reference Image panel: **HTTP Status Codes Legend**
+- All HTTP panels are focused on Juice Shop traffic (`dest_port=3000`) to support realistic lab web-attack simulation against the Juice Shop container.
+- Panel rename: **Unique Web Scanners** was renamed to **Unique High-Rate HTTP Sources** (same SPL/logic; only the title changed to better reflect what the metric actually measures).
+- Additional panel: **Top Signatures — Juice Shop (3000)** to show the most frequent Suricata alert signatures targeting the Juice Shop service.
+- Additional panel: **Potential Brute Force Attempts — Juice Shop** based on **[ALERT-003](/docs/alerts/alert_003_possible_brute_force.md)** logic (high-rate login attempts; not status-code dependent).
+- Reference image panel: **HTTP Status Codes Legend** for faster interpretation during triage.
 
 **Screenshot**
 

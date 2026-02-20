@@ -50,6 +50,7 @@ Cyberlab is a hands-on learning environment designed to:
   - Purpose:
     - Acts as the central SOC server
     - Receives telemetry from all other lab endpoints
+    - Victim
 
 - **Lenovo ThinkPad T480 – Multi-OS Lab Workstation (Cyberlab)** - Dual-boot System: Ubuntu 24.04 LTS & Windows 10 Pro
   - Kali Linux installed on Ubuntu (VirtualBox)
@@ -106,10 +107,16 @@ Cyberlab is a hands-on learning environment designed to:
 
 ## Documentation
 
-High-level docs and setup guides live under `docs/` and `setup/`
+High-level runbooks/templates, detections, alerts, incident reports/case studies, lab findings, Splunk dashboard docs, and setup guides
 
 - **Networking & fundamentals**
   - [Networking fundamentals](docs/networking_fundamentals.md)
+
+- **Cyberlab Incident Response Runbook**
+  - [Cyberlab Incident Response Runbook](docs/ir_runbook.md)
+
+- **Incident Report Template**
+  - [Incident Report Template](docs/ir_report_template.md)
 
 - **Detections**
   - [DET-001 Encoded Powershell (Sysmon EID 1)](docs/detections/det_001_encoded_powershell.md)
@@ -128,6 +135,7 @@ High-level docs and setup guides live under `docs/` and `setup/`
 
 - **Reports**
   - [IR-001 Brute Force Attempt Against OWASP Juice Shop Login (Hydra) — Detected via Splunk + Suricata](docs/reports/ir_001_brute_force_attempt_juice_shop.md)
+  - [IR-002 — Suricata Web Alert Burst – Juice Shop (SOA:3000)](docs/reports/ir_002_suricata_web_alert_burst.md)
   - [CASE-001 Nmap Port Scan Against SOA Detected (Suricata + UFW corroboration)](docs/reports/case_001_nmap_scan_against_soa_detected.md)
   - [CASE-002 Web Scanner Activity Against Juice Shop Detected (Suricata + UFW corroboration)](docs/reports/case_002_web_scanner_activity.md)
   - [VULN-001 Nessus Finding: Splunk Information Disclosure Vulnerability (SP-CAAAP5E) (Fixed)](docs/reports/vuln_001_nessus_finding_splunk_info_disclosure.md)
@@ -167,13 +175,13 @@ For a complete history of changes, updates, and development work, see the full *
 
 - `assets/` — banners, screenshots
 - `diagrams/` — network/topology diagrams
-- `docs/` — documentation (networking fundamentals, dashboards, detections, notes)
+- `docs/` — documentation (networking fundamentals, templates, dashboards, detections, reports, guides)
     - `detections/` - detection write-ups / saved splunk searches
     - `alerts/` - alert write-ups
     - `reports` - incidents, cases and remediations (lab exercises & real events)
     - `findings` - lab findings & fixes (config issues,root causes, mitigations)
     - `splunk_dashboards/` - dashboard write-ups & SPL breakdowns    
-- `scripts/` — automation (e.g., Nmap → SQL/Splunk)
+- `archive_scripts/` — archived / retired scripts
 - `setup/` — install/config notes per component
 - [📓 Progress Log](progress-log.md) — running diary of changes and experiments
 
