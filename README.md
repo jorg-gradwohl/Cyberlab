@@ -38,37 +38,20 @@ Cyberlab is a hands-on learning environment designed to:
 
 ### Hardware
 
-- **Desktop PC - Primary SOC Server (Son-of-Anton)** - Ubuntu 24.04 LTS - Runs:
-    - **Splunk Enterprise Indexer** (active, receiving on TCP 9997)
-    - **Suricata IDS** (monitoring live network traffic)
-    - **UFW** - Host Firewall
-    - Docker (containers):
-        - Bitcoin Pruned Node (container, fully synced)
-        - MariaDB (container)
-        - Victim Web Service (nginx container on TCP 8080, used to generate Suricata HTTP telemetry for scanning/testing)
-        - OWASP Juice Shop (TCP 3000)
-  - Purpose:
-    - Acts as the central SOC server
-    - Receives telemetry from all other lab endpoints
-    - Victim
+### Hardware
 
-- **Lenovo ThinkPad T480 – Multi-OS Lab Workstation (Cyberlab)** - Dual-boot System: Ubuntu 24.04 LTS & Windows 10 Pro
-  - Kali Linux installed on Ubuntu (VirtualBox)
-  - Malware Analysis Sandbox installed on Windows (VMware with Windows 10 Pro)
-  - Splunk Universal Forwarder installed on Ubuntu and Windows 10 Pro
-  - Windows 10 VM (VMWare) - Sysmon installed (Olaf Hartong config) and ingesting logs into Splunk via UF
-  - Acts as the “Branch Office” in the Cyberlab environment:
-    - Hosts lightweight services purpose-built for log generation
-    - NGINX static web page (for HTTP access logs)
-    - SMB network share (for simulated file operations)
-    - Cron jobs scheduled to generate synthetic activity (HTTP GET requests and write a timestamped heartbeat entry to `branch-heartbeat.log`).
-    - All relevant logs (nginx_access, nginx_error & branch_heartbeat) forwarded to Splunk (index=branch_office)
-    - See: [NGINX setup](setup/nginx-setup.md) and [SMB / samba setup](setup/smb-samba-setup.md)
+- **Desktop PC — Primary SOC Server (Son-of-Anton)** *(Ubuntu 24.04 LTS)*  
+  **Runs:** Splunk Enterprise (Indexer; recv **TCP 9997**), Suricata IDS, UFW, Docker: Bitcoin pruned node, MariaDB, NGINX victim (**:8080**), OWASP Juice Shop (**:3000**)  
+  **Role:** Central SOC server + telemetry hub + primary victim target
 
-- **MacBook Pro - SOC Analyst Console**  
-  - Main analyst workstation for Splunk Web interface
-  - Runs a Splunk Universal Forwarder
-  - Used to manage the Cyberlab environment via SSH into Desktop PC and ThinkPad
+- **Lenovo ThinkPad T480 — Multi-OS Lab Workstation (Cyberlab)** *(Dual-boot Ubuntu 24.04 LTS / Windows 10 Pro)*  
+  **Ubuntu:** VirtualBox Kali VM; Splunk UF  
+  **Windows:** VMware Win10 sandbox; Sysmon (Olaf Hartong) → Splunk UF  
+  **Role:** “Branch Office” log generator (NGINX, SMB share, heartbeat cron) → forwards to `index=branch_office`  
+  **Docs:** [NGINX setup](setup/nginx-setup.md), [SMB / samba setup](setup/smb-samba-setup.md)
+
+- **MacBook Pro — SOC Analyst Console**  
+  **Role:** Splunk Web + admin/SSH management of SOA and Cyberlab; Splunk UF installed
 
 ### Network
 
@@ -132,6 +115,7 @@ High-level runbooks/templates, detections, alerts, incident reports/case studies
   - [ALERT-001 Encoded Powershell (Sysmon EID 1)](docs/alerts/alert_001_encoded_powershell.md)
   - [ALERT-002 ET SCAN Recon Activity Detected (Port Scan/Probing)](docs/alerts/alert_002_port_scan_activity.md)
   - [ALERT-003 Juice Shop — Possible Brute Force (≥10 login requests / 5m)](docs/alerts/alert_003_possible_brute_force.md)
+  - [ALERT-004 Possible SSH Brute Force (Linux Hosts) (≥5 failed logins / 5m)](docs/alerts/alert_004_possible_ssh_brute_force_linux_hosts.md)
 
 - **Reports**
   - [IR-001 Brute Force Attempt Against OWASP Juice Shop Login (Hydra) — Detected via Splunk + Suricata](docs/reports/ir_001_brute_force_attempt_juice_shop.md)

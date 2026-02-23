@@ -5,6 +5,18 @@ Entries are added as new components are installed, tested, or refined.
 
 
 ---
+## 23-02-2026  
+SOA SOC Console Dashboard Update + SSH Brute Force Alert (Linux Hosts)
+
+- Updated the **[SOA SOC Console](/docs/splunk_dashboards/soa_soc_console.md)** dashboard:
+  - Added a new panel: **Failed SSH Logins Over Time**
+
+- Created a new Splunk scheduled alert for Linux auth-based ssh brute force detection:
+  - **[ALERT-004 Possible SSH Brute Force (Linux Hosts)](/docs/alerts/alert_004_possible_ssh_brute_force_linux_hosts.md)** — triggers on **≥5 failed SSH logins / 5m** from the same `src_ip` against a Linux host/user 
+
+![ALERT-004](/assets/alert_004.png)
+
+
 ## 20-02-2026   
 IR Runbook + IR Report Template Added + Suricata IDS Dashboard (Juice Shop Tab) Update + IR-002 Report
 

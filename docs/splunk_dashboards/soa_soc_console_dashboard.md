@@ -1,4 +1,4 @@
-# SOA SOC Console — Suricata + UFW (Splunk Dashboard Studio)
+# SOA SOC Console — (Splunk Dashboard Studio)
 
 This dashboard is a SOC-style console for **SOA** in Cyberlab, combining **Suricata on SOA** (host-based network monitoring of traffic visible to SOA’s capture interface) and **UFW on SOA** (host firewall blocks).
 
@@ -14,15 +14,11 @@ Scope: visibility is **SOA-centric** (traffic to/from SOA), not full-network mon
 
 ## Data Source Used in This Dashboard
 
-SOA (Server / Ubuntu) — Suricata + UFW logs forwarded into Splunk
+SOA (Server / Ubuntu) — multiple telemetry sources forwarded into Splunk
 
-- **Suricata**
-  - Index: `ids`
-  - Sourcetype: `suricata:eve`
-
-- **UFW**
-  - Index: `endpoints`
-  - Sourcetype: `ufw`
+- **Suricata:** Index: `ids`, Sourcetype: `suricata:eve`
+- **UFW:** Index: `endpoints`, Sourcetype: `ufw`
+- **Linux Auth Logs:** Index: `endpoints`, Sourcetype: `auth`
 
 ---
 
@@ -53,6 +49,7 @@ SPL Used:
   - `2 → Medium`
   - `3 → Low`
   - anything else → `Unknown`
+  - `case()` is like an if / else-if / else chain
 
 - `| stats count as alerts by severity` - Counts the number of Suricata alerts per severity bucket.
 
@@ -234,3 +231,17 @@ SPL Used:
 
 **Purpose:**
 Surfaces potential brute-force / password-guessing behaviour against Juice Shop by flagging **high-rate login endpoint activity** from a single `src_ip`. This panel is designed for quick triage: identify the source, confirm the burst window, and spot automation hints via user-agent patterns.
+
+## 10. Failed SSH Logins Over Time (Linux Hosts) — Visualization: Column Chart
+
+SPL Used:
+```bash
+index=endpoints host=SOA sourcetype=auth *Failed* *ssh*
+| timechart span=15m count as failed_ssh_logins
+```
+
+- `index=endpoints host=SOA sourcetype=auth *Failed* *ssh*` - Searches SOA’s Linux authentication logs ingested into Splunk (`sourcetype=auth`), filtered to SSH-related failure messages.
+- `| timechart span=15m count as failed_ssh_logins` - Buckets matching events into 15-minute intervals and counts how many failed SSH logins occurred in each bucket.
+
+**Purpose:**
+Provides a quick SOC-style view of failed SSH login activity on **SOA**. Spikes can indicate password-guessing/brute-force behaviour and help define the investigation window.
