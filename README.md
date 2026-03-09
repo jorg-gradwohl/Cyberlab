@@ -120,6 +120,7 @@ High-level runbooks/templates, detections, alerts, incident reports/case studies
 - **Reports**
   - [IR-001 Brute Force Attempt Against OWASP Juice Shop Login (Hydra) — Detected via Splunk + Suricata](docs/reports/ir_001_brute_force_attempt_juice_shop.md)
   - [IR-002 — Suricata Web Alert Burst – Juice Shop (SOA:3000)](docs/reports/ir_002_suricata_web_alert_burst.md)
+  - [IR-003 — SSH Brute Force Attempt Detected (Linux Auth Logs)](docs/reports/ir_003_ssh_brute_force_attempt.md)
   - [CASE-001 Nmap Port Scan Against SOA Detected (Suricata + UFW corroboration)](docs/reports/case_001_nmap_scan_against_soa_detected.md)
   - [CASE-002 Web Scanner Activity Against Juice Shop Detected (Suricata + UFW corroboration)](docs/reports/case_002_web_scanner_activity.md)
   - [VULN-001 Nessus Finding: Splunk Information Disclosure Vulnerability (SP-CAAAP5E) (Fixed)](docs/reports/vuln_001_nessus_finding_splunk_info_disclosure.md)

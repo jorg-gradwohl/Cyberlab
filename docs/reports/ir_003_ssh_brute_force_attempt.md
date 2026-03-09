@@ -1,4 +1,4 @@
-# IR-004 — SSH Brute Force Attempt Detected (Linux Auth Logs) – SOA
+# IR-003 — SSH Brute Force Attempt Detected (Linux Auth Logs) – SOA
 
 **Date/Time (UTC):** 22-02-2026 15:10 to 15:15  
 **Severity:** Medium 
